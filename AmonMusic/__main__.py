@@ -1,15 +1,3 @@
-# Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
-# Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
-
-"""
-TheTeamAlexa is a project of Telegram bots with variety of purposes.
-Copyright (c) 2021 ~ Present Team Alexa <https://github.com/TheTeamAlexa>
-
-This program is free software: you can redistribute it and can modify
-as you want or you can collabe if you have new ideas.
-"""
-
-
 import asyncio
 import importlib
 from typing import Any
@@ -19,17 +7,17 @@ from pytgcalls.exceptions import NoActiveGroupCall, GroupCallNotFound
 
 import config
 from config import BANNED_USERS
-from AlexaMusic import LOGGER, app, userbot
-from AlexaMusic.core.call import Alexa
-from AlexaMusic.misc import sudo
-from AlexaMusic.plugins import ALL_MODULES
-from AlexaMusic.utils.database import get_banned_users, get_gbanned
+from AmonMusic import LOGGER, app, userbot
+from AmonMusic.core.call import Amon
+from AmonMusic.misc import sudo
+from AmonMusic.plugins import ALL_MODULES
+from AmonMusic.utils.database import get_banned_users, get_gbanned
 
 
 async def init() -> None:
     # Check for at least one valid Pyrogram string session
     if all(not getattr(config, f"STRING{i}") for i in range(1, 6)):
-        LOGGER("AlexaMusic").error("Add Pyrogram string session and then try...")
+        LOGGER("AmonMusic").error("Add Pyrogram string session and then try...")
         exit()
     await sudo()
     try:
@@ -41,27 +29,27 @@ async def init() -> None:
         pass
     await app.start()
     for module in ALL_MODULES:
-        importlib.import_module("AlexaMusic.plugins" + module)
-    LOGGER("AlexaMusic.plugins").info("Necessary Modules Imported Successfully.")
+        importlib.import_module("AmonMusic.plugins" + module)
+    LOGGER("AmonMusic.plugins").info("Necessary Modules Imported Successfully.")
     await userbot.start()
-    await Alexa.start()
+    await Amon.start()
     try:
         await Alexa.stream_call("https://telegra.ph/file/b60b80ccb06f7a48f68b5.mp4")
     except (NoActiveGroupCall, GroupCallNotFound):
-        LOGGER("AlexaMusic").error(
+        LOGGER("AmonMusic").error(
             "[ERROR] - \n\nTurn on group voice chat and don't put it off otherwise I'll stop working thanks."
         )
         exit()
     except:
         pass
-    await Alexa.decorators()
-    LOGGER("AlexaMusic").info("Alexa Music Bot Started Successfully")
+    await Amon.decorators()
+    LOGGER("AmonMusic").info("Amo Music Bot Started Successfully")
     await idle()
     await app.stop()
     await userbot.stop()
-    LOGGER("AlexaMusic").info("Stopping Alexa Music Bot...")
+    LOGGER("AmonMusic").info("Stopping Amon Music bot...")
 
 
 if __name__ == "__main__":
     asyncio.get_event_loop().run_until_complete(init())
-    LOGGER("AlexaMusic").info("Stopping Music Bot")
+    LOGGER("AmonMusic").info("Stopping Music Bot")
