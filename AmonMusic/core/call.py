@@ -1,15 +1,3 @@
-# Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
-# Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
-
-"""
-TheTeamAlexa is a project of Telegram bots with variety of purposes.
-Copyright (c) 2021 ~ Present Team Alexa <https://github.com/TheTeamAlexa>
-
-This program is free software: you can redistribute it and can modify
-as you want or you can collabe if you have new ideas.
-"""
-
-
 import asyncio
 from typing import Union
 
@@ -28,9 +16,9 @@ from pytgcalls.types import ChatUpdate, MediaStream, Update
 from pytgcalls.types import StreamAudioEnded
 
 import config
-from AlexaMusic import LOGGER, YouTube, app
-from AlexaMusic.misc import db
-from AlexaMusic.utils.database import (
+from AmonMusic import LOGGER, YouTube, app
+from AmonMusic.misc import db
+from AmonMusic.utils.database import (
     add_active_chat,
     add_active_video_chat,
     get_assistant,
@@ -44,10 +32,10 @@ from AlexaMusic.utils.database import (
     remove_active_video_chat,
     set_loop,
 )
-from AlexaMusic.utils.exceptions import AssistantErr
-from AlexaMusic.utils.inline.play import stream_markup, telegram_markup
-from AlexaMusic.utils.stream.autoclear import auto_clean
-from AlexaMusic.utils.thumbnails import gen_thumb
+from AmonMusic.utils.exceptions import AssistantErr
+from AmonMusic.utils.inline.play import stream_markup, telegram_markup
+from AmonMusic.utils.stream.autoclear import auto_clean
+from AmonMusic.utils.thumbnails import gen_thumb
 from strings import get_string
 
 autoend = {}
@@ -67,7 +55,7 @@ async def _clear_(chat_id):
 class Call(PyTgCalls):
     def __init__(self):
         self.userbot1 = Client(
-            name="Alexa1",
+            name="Amon1",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING1),
@@ -77,7 +65,7 @@ class Call(PyTgCalls):
             cache_duration=100,
         )
         self.userbot2 = Client(
-            name="Alexa2",
+            name="Amon2",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING2),
@@ -87,7 +75,7 @@ class Call(PyTgCalls):
             cache_duration=100,
         )
         self.userbot3 = Client(
-            name="Alexa3",
+            name="Amon3",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING3),
@@ -97,7 +85,7 @@ class Call(PyTgCalls):
             cache_duration=100,
         )
         self.userbot4 = Client(
-            name="Alexa4",
+            name="Amon4",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING4),
@@ -107,7 +95,7 @@ class Call(PyTgCalls):
             cache_duration=100,
         )
         self.userbot5 = Client(
-            name="Alexa5",
+            name="Amon5",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING5),
@@ -606,4 +594,4 @@ class Call(PyTgCalls):
             await self.change_stream(client, update.chat_id)
 
 
-Alexa = Call()
+Amon = Call()
