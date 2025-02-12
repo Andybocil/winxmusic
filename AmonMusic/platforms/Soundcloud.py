@@ -14,7 +14,7 @@ from os import path
 
 from yt_dlp import YoutubeDL
 
-from AlexaMusic.utils.formatters import seconds_to_min
+from AmonMusic.utils.formatters import seconds_to_min
 
 
 class SoundAPI:
