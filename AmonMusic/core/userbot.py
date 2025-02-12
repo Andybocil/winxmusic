@@ -1,15 +1,3 @@
-# Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
-# Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
-
-"""
-TheTeamAlexa is a project of Telegram bots with variety of purposes.
-Copyright (c) 2021 ~ Present Team Alexa <https://github.com/TheTeamAlexa>
-
-This program is free software: you can redistribute it and can modify
-as you want or you can collabe if you have new ideas.
-"""
-
-
 import sys
 
 from pyrogram import Client
@@ -25,35 +13,35 @@ assistantids = []
 class Userbot(Client):
     def __init__(self):
         self.one = Client(
-            name="AlexaOne",
+            name="AmonOne",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING1),
             no_updates=True,
         )
         self.two = Client(
-            name="AlexaTwo",
+            name="AmonTwo",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING2),
             no_updates=True,
         )
         self.three = Client(
-            name="AlexaThree",
+            name="AmonThree",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING3),
             no_updates=True,
         )
         self.four = Client(
-            name="AlexaFour",
+            name="AmonFour",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING4),
             no_updates=True,
         )
         self.five = Client(
-            name="AlexaFive",
+            name="AmonFive",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING5),
@@ -65,9 +53,9 @@ class Userbot(Client):
         if config.STRING1:
             await self.one.start()
             try:
-                await self.one.join_chat("Alexa_Help")
-                await self.one.join_chat("TheTeamAlexa")
-                await self.one.join_chat("Alexa_BotUpdates")
+                await self.one.join_chat("memexprojectback")
+                await self.one.join_chat("memekpro")
+                await self.one.join_chat("thelightoffc")
             except:
                 pass
             assistants.append(1)
@@ -93,9 +81,9 @@ class Userbot(Client):
         if config.STRING2:
             await self.two.start()
             try:
-                await self.two.join_chat("Alexa_Help")
-                await self.two.join_chat("TheTeamAlexa")
-                await self.two.join_chat("Alexa_BotUpdates")
+                await self.two.join_chat("memexprojectback")
+                await self.two.join_chat("memekpro")
+                await self.two.join_chat("thelightoffc")
             except:
                 pass
             assistants.append(2)
@@ -121,9 +109,9 @@ class Userbot(Client):
         if config.STRING3:
             await self.three.start()
             try:
-                await self.three.join_chat("Alexa_Help")
-                await self.three.join_chat("TheTeamAlexa")
-                await self.three.join_chat("Alexa_BotUpdates")
+                await self.three.join_chat("memexprojectback")
+                await self.three.join_chat("memekpro")
+                await self.three.join_chat("thelightoffc")
             except:
                 pass
             assistants.append(3)
@@ -149,9 +137,9 @@ class Userbot(Client):
         if config.STRING4:
             await self.four.start()
             try:
-                await self.four.join_chat("Alexa_Help")
-                await self.four.join_chat("TheTeamAlexa")
-                await self.four.join_chat("Alexa_BotUpdates")
+                await self.four.join_chat("memexprojectback")
+                await self.four.join_chat("memekpro")
+                await self.four.join_chat("thelightoffc")
             except:
                 pass
             assistants.append(4)
@@ -177,9 +165,9 @@ class Userbot(Client):
         if config.STRING5:
             await self.five.start()
             try:
-                await self.five.join_chat("Alexa_Help")
-                await self.five.join_chat("TheTeamAlexa")
-                await self.five.join_chat("Alexa_BotUpdates")
+                await self.five.join_chat("memexprojectback")
+                await self.five.join_chat("memekpro")
+                await self.five.join_chat("thelightoffc")
             except:
                 pass
             assistants.append(5)
