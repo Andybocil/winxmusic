@@ -1,5 +1,5 @@
 {
-    "name": "Alexa Music",
+    "name": "Amon Music",
     "description": "Telegram streaming bot with some useful features, written in Python. Supporting platforms like Youtube, Spotify, Resso, AppleMusic, Soundcloud and M3u8 Links.",
     "logo": "https://telegra.ph/file/ba967503682a55beaedd3.png",
     "keywords": [
@@ -7,9 +7,9 @@
     "python3",
     "telegram",
     "bot",
-    "Alexa",
-    "alexamusic",
-    "alexamusicbot",
+    "Amon",
+    "amonmusic",
+    "amonmusicbot",
     "pytgcalls",
     "ntgcalls",
     "py-tgcalls",
@@ -34,7 +34,7 @@
       },
       "OWNER_ID": {
         "description": "The user id(s) of user(s) whom you would like to add as a OWNER. Multiple values shall be seperated with a space.",
-        "value": "5303133436",
+        "value": "7369463399",
         "required": true
       },        
       "MONGO_DB_URI": {
