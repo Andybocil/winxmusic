@@ -1,15 +1,3 @@
-# Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
-# Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
-
-"""
-TheTeamAlexa is a project of Telegram bots with variety of purposes.
-Copyright (c) 2021 ~ Present Team Alexa <https://github.com/TheTeamAlexa>
-
-This program is free software: you can redistribute it and can modify
-as you want or you can collabe if you have new ideas.
-"""
-
-
 import asyncio
 
 from pyrogram import filters
@@ -21,11 +9,11 @@ import config
 from config import BANNED_USERS
 from config.config import OWNER_ID
 from strings import get_command, get_string
-from AlexaMusic import Telegram, YouTube, app
-from AlexaMusic.misc import SUDOERS
-from AlexaMusic.plugins.play.playlist import del_plist_msg
-from AlexaMusic.plugins.sudo.sudoers import sudoers_list
-from AlexaMusic.utils.database import (
+from AmonMusic import Telegram, YouTube, app
+from AmonMusic.misc import SUDOERS
+from AmonMusic.plugins.play.playlist import del_plist_msg
+from AmonMusic.plugins.sudo.sudoers import sudoers_list
+from AmonMusic.utils.database import (
     add_served_chat,
     is_served_user,
     add_served_user,
@@ -36,12 +24,36 @@ from AlexaMusic.utils.database import (
     is_on_off,
     is_served_private_chat,
 )
-from AlexaMusic.utils.decorators.language import LanguageStart
-from AlexaMusic.utils.inline import help_pannel, private_panel, start_pannel
-from AlexaMusic.utils.command import commandpro
+from AmonMusic.utils.decorators.language import LanguageStart
+from AmonMusic.utils.inline import help_pannel, private_panel, start_pannel
+from AmonMusic.utils.command import commandpro
 
 loop = asyncio.get_running_loop()
 
+MEMEK_VID = [
+    "https://graph.org/file/1404e3461e264573bcdd0-c9085890741d6e2544.mp4",
+    "https://graph.org/file/ff95ce8c6331d23839ae7-23d71017965a73c4db.mp4",
+    "https://graph.org/file/65d4917fdf3ace03aed53-c3f2b8a1f7092ed093.mp4",
+    "https://graph.org/file/a70393b449b8b111b5c29-810411fbd1d2958f64.mp4",
+    "https://graph.org/file/43279d739b5f5a18642c6-042b438a156ac6453f.mp4",
+    "https://graph.org/file/1404e3461e264573bcdd0-c9085890741d6e2544.mp4",
+    "https://graph.org/file/ff95ce8c6331d23839ae7-23d71017965a73c4db.mp4",
+    "https://graph.org/file/65d4917fdf3ace03aed53-c3f2b8a1f7092ed093.mp4",
+    "https://graph.org/file/a70393b449b8b111b5c29-810411fbd1d2958f64.mp4",
+    "https://graph.org/file/43279d739b5f5a18642c6-042b438a156ac6453f.mp4"
+]
+
+STICKERS = [
+    "CAACAgUAAxkBAAImjWbWuytdCwYiXAMFuJE0mByhchSZAAJyBgACiJXZVa9ttR9_hcuwNAQ",
+    "CAACAgUAAxkBAAImj2bWu13gsWHeAxbgIdB1ccrQDUoGAAJ5CwACfJLZVf2js5lbq0cdNAQ",
+    "CAACAgEAAx0Cd6nKUAACATVl_rtAi9KCVQf8vcUC4FMDUfLP8wACHQEAAlEpDTnhphyRDaTrPR4E",
+    "CAACAgUAAx0Cd6nKUAACATJl_rsEJOsaaPSYGhU7bo7iEwL8AAPMDgACu2PYV8Vb8aT4_HUPHgQ",
+
+]
+
+async def delete_sticker_after_delay(message, delay):
+    await asyncio.sleep(delay)
+    await message.delete()
 
 @app.on_message(
     filters.command(get_command("START_COMMAND")) & filters.private & ~BANNED_USERS
@@ -52,13 +64,19 @@ async def start_comm(client, message: Message, _):
     if len(message.text.split()) > 1:
         name = message.text.split(None, 1)[1]
         if name[0:4] == "help":
-            keyboard = help_pannel(_)
-            return await message.reply_text(_["help_1"], reply_markup=keyboard)
+            keyboard = first_page(_)
+            sticker_message = await message.reply_sticker(sticker=random.choice(STICKERS))
+            asyncio.create_task(delete_sticker_after_delay(sticker_message, 2))  # Delete sticker after 2 seconds
+            await message.reply_video(
+                random.choice(MEMEK_VID),
+                caption=_["help_1"].format(config.SUPPORT_GROUP),
+                reply_markup=keyboard,
+            )
         if name[0:4] == "song":
             return await message.reply_text(_["song_2"])
         if name[0:3] == "sta":
             m = await message.reply_text(
-                "🥱 ɢᴇᴛᴛɪɴɢ ʏᴏᴜʀ ᴩᴇʀsᴏɴᴀʟ sᴛᴀᴛs ғʀᴏᴍ {config.MUSIC_BOT_NAME} sᴇʀᴠᴇʀ."
+                "🔎 Fetching your personal stats.!"
             )
             stats = await get_userss(message.from_user.id)
             tot = len(stats)
@@ -94,14 +112,16 @@ async def start_comm(client, message: Message, _):
                     details = stats.get(vidid)
                     title = (details["title"][:35]).title()
                     if vidid == "telegram":
-                        msg += f"🔗[ᴛᴇʟᴇɢʀᴀᴍ ᴍᴇᴅɪᴀ](https://t.me/Shayri_Music_Lovers) ** ᴩʟᴀʏᴇᴅ {count} ᴛɪᴍᴇs**\n\n"
+                        msg += f"🔗[Telegram Files and Audios](https://t.me/telegram) ** played {count} times**\n\n"
                     else:
                         msg += f"🔗 [{title}](https://www.youtube.com/watch?v={vidid}) ** played {count} times**\n\n"
                 msg = _["ustats_2"].format(tot, tota, limit) + msg
                 return videoid, msg
 
             try:
-                videoid, msg = await loop.run_in_executor(None, get_stats)
+                videoid, msg = await loop.run_in_executor(
+                    None, get_stats
+                )
             except Exception as e:
                 print(e)
                 return
@@ -116,7 +136,7 @@ async def start_comm(client, message: Message, _):
                 sender_name = message.from_user.first_name
                 return await app.send_message(
                     config.LOG_GROUP_ID,
-                    f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <code>sᴜᴅᴏʟɪsᴛ</code>\n\n**ᴜsᴇʀ ɪᴅ:** {sender_id}\n**ᴜsᴇʀɴᴀᴍᴇ:** {sender_name}",
+                    f"{message.from_user.mention} has just started bot to check <code>SUDOLIST</code>\n\n**USER ID:** {sender_id}\n**USER NAME:** {sender_name}",
                 )
             return
         if name[0:3] == "lyr":
@@ -126,11 +146,13 @@ async def start_comm(client, message: Message, _):
             if lyrics:
                 return await Telegram.send_split_text(message, lyrics)
             else:
-                return await message.reply_text("ғᴀɪʟᴇᴅ ᴛᴏ ɢᴇᴛ ʟʏʀɪᴄs.")
+                return await message.reply_text(
+                    "Failed to get lyrics."
+                )
         if name[0:3] == "del":
             await del_plist_msg(client=client, message=message, _=_)
         if name[0:3] == "inf":
-            m = await message.reply_text("🔎")
+            m = await message.reply_text("🔎 Fetching Info!")
             query = (str(name)).replace("info_", "", 1)
             query = f"https://www.youtube.com/watch?v={query}"
             results = VideosSearch(query, limit=1)
@@ -138,29 +160,35 @@ async def start_comm(client, message: Message, _):
                 title = result["title"]
                 duration = result["duration"]
                 views = result["viewCount"]["short"]
-                thumbnail = result["thumbnails"][0]["url"].split("?")[0]
+                thumbnail = result["thumbnails"][0]["url"].split("?")[
+                    0
+                ]
                 channellink = result["channel"]["link"]
                 channel = result["channel"]["name"]
                 link = result["link"]
                 published = result["publishedTime"]
             searched_text = f"""
-😲**ᴛʀᴀᴄᴋ ɪɴғᴏʀɴᴀᴛɪᴏɴ**😲
+🔍__**Video Track Information**__
 
-📌**ᴛɪᴛʟᴇ:** {title}
+❇️**Title:** {title}
 
-⏳**ᴅᴜʀᴀᴛɪᴏɴ:** {duration} ᴍɪɴᴜᴛᴇs
-👀**ᴠɪᴇᴡs:** `{views}`
-⏰**ᴩᴜʙʟɪsʜᴇᴅ ᴏɴ:** {published}
-🎥**ᴄʜᴀɴɴᴇʟ:** {channel}
-📎**ᴄʜᴀɴɴᴇʟ ʟɪɴᴋ:** [ᴠɪsɪᴛ ᴄʜᴀɴɴᴇʟ]({channellink})
-🔗**ʟɪɴᴋ:** [ᴡᴀᴛᴄʜ ᴏɴ ʏᴏᴜᴛᴜʙᴇ]({link})
+⏳**Duration:** {duration} Mins
+👀**Views:** `{views}`
+⏰**Published Time:** {published}
+🎥**Channel Name:** {channel}
+📎**Channel Link:** [Visit From Here]({channellink})
+🔗**Video Link:** [Link]({link})
 
-💖 sᴇᴀʀᴄʜ ᴩᴏᴡᴇʀᴇᴅ ʙʏ {config.MUSIC_BOT_NAME}"""
+⚡️ __Searched Powered By {config.MUSIC_BOT_NAME}__"""
             key = InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text="• ʏᴏᴜᴛᴜʙᴇ •", url=f"{link}"),
-                        InlineKeyboardButton(text="• ᴄʟᴏsᴇ •", callback_data="close"),
+                        InlineKeyboardButton(
+                            text="🎥 Watch ", url=f"{link}"
+                        ),
+                        InlineKeyboardButton(
+                            text="🔄 Close", callback_data="close"
+                        ),
                     ],
                 ]
             )
@@ -169,7 +197,7 @@ async def start_comm(client, message: Message, _):
                 message.chat.id,
                 photo=thumbnail,
                 caption=searched_text,
-                parse_mode=enums.ParseMode.MARKDOWN,
+                parse_mode=ParseMode.MARKDOWN,
                 reply_markup=key,
             )
             if await is_on_off(config.LOG):
@@ -177,39 +205,28 @@ async def start_comm(client, message: Message, _):
                 sender_name = message.from_user.first_name
                 return await app.send_message(
                     config.LOG_GROUP_ID,
-                    f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <code>ᴛʀᴀᴄᴋ ɪɴғᴏʀᴍᴀᴛɪᴏɴ</code>\n\n**ᴜsᴇʀ ɪᴅ:** {sender_id}\n**ᴜsᴇʀɴᴀᴍᴇ:** {sender_name}",
+                    f"{message.from_user.mention} has just started bot to check <code>VIDEO INFORMATION</code>\n\n**USER ID:** {sender_id}\n**USER NAME:** {sender_name}",
                 )
     else:
-        try:
-            await app.resolve_peer(OWNER_ID[0])
-            OWNER = OWNER_ID[0]
-        except:
-            OWNER = None
-        out = private_panel(_, app.username, OWNER)
-        if config.START_IMG_URL:
-            try:
-                await message.reply_photo(
-                    photo=config.START_IMG_URL,
-                    caption=_["start_2"].format(message.from_user.mention, app.mention),
-                    reply_markup=InlineKeyboardMarkup(out),
-                )
-            except:
-                await message.reply_text(
-                    caption=_["start_2"].format(message.from_user.mention, app.mention),
-                    reply_markup=InlineKeyboardMarkup(out),
-                )
-        else:
-            await message.reply_text(
-                caption=_["start_2"].format(message.from_user.mention, app.mention),
-                reply_markup=InlineKeyboardMarkup(out),
-            )
+        out = private_panel(_, app.username)
+        sticker_message = await message.reply_sticker(sticker=random.choice(STICKERS))
+        asyncio.create_task(delete_sticker_after_delay(sticker_message, 2))  # Delete sticker after 2 seconds
+        served_chats = len(await get_served_chats())
+        served_users = len(await get_served_users())
+        UP, CPU, RAM, DISK = await bot_sys_stats()
+        await message.reply_video(
+            random.choice(MEMEK_VID),
+            caption=random.choice(MEKI).format(message.from_user.mention, app.mention, UP, DISK, CPU, RAM, served_users, served_chats),
+            reply_markup=InlineKeyboardMarkup(out),
+        )
         if await is_on_off(config.LOG):
             sender_id = message.from_user.id
             sender_name = message.from_user.first_name
             return await app.send_message(
                 config.LOG_GROUP_ID,
-                f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ʏᴏᴜʀ ʙᴏᴛ.\n\n**ᴜsᴇʀ ɪᴅ:** {sender_id}\n**ᴜsᴇʀɴᴀᴍᴇ:** {sender_name}",
+                f"{message.from_user.mention} has just started Bot.\n\n**USER ID:** {sender_id}\n**USER NAME:** {sender_name}",
             )
+
 
 
 @app.on_message(
@@ -218,11 +235,14 @@ async def start_comm(client, message: Message, _):
 @LanguageStart
 async def testbot(client, message: Message, _):
     out = start_pannel(_)
-    return await message.reply_text(
-        _["start_1"].format(message.chat.title, config.MUSIC_BOT_NAME),
+    uptime = int(time.time() - _boot_)
+    await message.reply_video(
+        random.choice(MEMEK_VID),
+        caption=_["start_1"].format(app.mention, get_readable_time(uptime)),
         reply_markup=InlineKeyboardMarkup(out),
     )
-
+    return await add_served_chat(message.chat.id)
+    
 
 welcome_group = 2
 
