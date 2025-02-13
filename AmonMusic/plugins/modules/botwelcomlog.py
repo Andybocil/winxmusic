@@ -1,13 +1,8 @@
-# This code is written by (C) TheTeamAlexa bot will send message to log group when someone add
-# this bot to new group make sure to star all projects
-# Copyright (C) 2021-2025 by Alexa_Help@ Github, < TheTeamAlexa >.
-# All rights reserved. © Alexa © Yukki
-
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from config import LOG, LOG_GROUP_ID
-from AlexaMusic import app
-from AlexaMusic.utils.database import delete_served_chat, get_assistant, is_on_off
+from AmomMusic import app
+from AmonMusic.utils.database import delete_served_chat, get_assistant, is_on_off
 
 
 @app.on_message(filters.new_chat_members)
