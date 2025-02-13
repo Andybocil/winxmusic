@@ -1,14 +1,3 @@
-# Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
-# Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
-
-"""
-TheTeamAlexa is a project of Telegram bots with variety of purposes.
-Copyright (c) 2021 ~ Present Team Alexa <https://github.com/TheTeamAlexa>
-
-This program is free software: you can redistribute it and can modify
-as you want or you can collabe if you have new ideas.
-"""
-
 
 import asyncio
 import math
@@ -27,15 +16,15 @@ from pyrogram import filters
 
 import config
 from strings import get_command
-from AlexaMusic import app
-from AlexaMusic.misc import HAPP, SUDOERS, XCB
-from AlexaMusic.utils.database import (
+from AmonMusic import app
+from AmonMusic.misc import HAPP, SUDOERS, XCB
+from AmonMusic.utils.database import (
     get_active_chats,
     remove_active_chat,
     remove_active_video_chat,
 )
-from AlexaMusic.utils.decorators.language import language
-from AlexaMusic.utils.pastebin import Alexabin
+from AmonMusic.utils.decorators.language import language
+from AmonMusic.utils.pastebin import Amonbin
 
 # Commands
 GETLOG_COMMAND = get_command("GETLOG_COMMAND")
@@ -61,7 +50,7 @@ async def log_(client, message, _):
             if HAPP is None:
                 return await message.reply_text(_["heroku_1"])
             data = HAPP.get_log()
-            link = await Alexabin(data)
+            link = await Amonbin(data)
             return await message.reply_text(link)
         else:
             if os.path.exists(config.LOG_FILE_NAME):
@@ -74,7 +63,7 @@ async def log_(client, message, _):
                     NUMB = 100
                 for x in lines[-NUMB:]:
                     data += x
-                link = await Alexabin(data)
+                link = await Amonbin(data)
                 return await message.reply_text(link)
             else:
                 return await message.reply_text(_["heroku_2"])
