@@ -1,42 +1,71 @@
-# Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
-# Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
-
-"""
-TheTeamAlexa is a project of Telegram bots with variety of purposes.
-Copyright (c) 2021 ~ Present Team Alexa <https://github.com/TheTeamAlexa>
-
-This program is free software: you can redistribute it and can modify
-as you want or you can collabe if you have new ideas.
-"""
-
 import random
 import string
 
 from pyrogram import filters
+from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
 from pyrogram.types import InlineKeyboardMarkup, InputMediaPhoto, Message
 from pytgcalls.exceptions import NoActiveGroupCall
 
 import config
-from AlexaMusic import Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app
-from AlexaMusic.core.call import Alexa
-from AlexaMusic.utils import seconds_to_min, time_to_seconds
-from AlexaMusic.utils.channelplay import get_channeplayCB
-from AlexaMusic.utils.database import is_video_allowed
-from AlexaMusic.utils.decorators.language import languageCB
-from AlexaMusic.utils.decorators.play import PlayWrapper
-from AlexaMusic.utils.formatters import formats
-from AlexaMusic.utils.inline.play import (
+from config import BANNED_USERS, lyrical, MUST_JOIN, AJG
+from AmonMusic import Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app
+from AmonMusic.core.call import Amon
+from AmonMusic.utils import seconds_to_min, time_to_seconds
+from AmonMusic.utils.channelplay import get_channeplayCB
+from AmonMusic.utils.database import is_video_allowed
+from AmonMusic.utils.decorators.language import languageCB
+from AmonMusic.utils.decorators.play import PlayWrapper
+from AmonMusic.utils.formatters import formats
+from AmonMusic.utils.inline.play import (
     livestream_markup,
     playlist_markup,
     slider_markup,
     track_markup,
 )
-from AlexaMusic.utils.inline.playlist import botplaylist_markup
-from AlexaMusic.utils.logger import play_logs
-from AlexaMusic.utils.stream.stream import stream
+from AmonMusic.utils.inline.playlist import botplaylist_markup
+from AmonMusic.utils.logger import play_logs
+from AmonMusic.utils.stream.stream import stream
 from config import BANNED_USERS, lyrical
 from strings import get_command
-from AlexaMusic.utils.database import is_served_user
+from AmonMusic.utils.database import is_served_user
+
+CHANNEL_ID = "-1002209676100"
+
+def subcribe(func):
+    async def wrapper(_, message: Message):
+        user_id = message.from_user.id
+        user_name = message.from_user.first_name
+        rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
+        if not MUST_JOIN:  # Not compulsory
+            return
+        try:
+            try:
+                await app.get_chat_member(MUST_JOIN, message.from_user.id)
+            except UserNotParticipant:
+                if MUST_JOIN.isalpha():
+                    link = "https://t.me/" + MUST_JOIN
+                else:
+                    chat_info = await app.get_chat(MUST_JOIN)
+                    chat_info.invite_link
+                try:
+                    await message.reply(
+                        f"<blockquote><b>ʜᴀʟʟᴏ {rpk}. ᴀɢᴀʀ ʙɪsᴀ ᴍᴇɴɢɢᴜɴᴀᴋᴀɴ ʙᴏᴛ ᴀɴᴅᴀ ʜᴀʀᴜs ᴍᴀsᴜᴋ ᴋᴇ ᴄʜᴀɴɴᴇʟ ᴜᴘᴅᴀᴛᴇs ʙᴏᴛ ᴛᴇʀʟᴇʙɪʜ ᴅᴀʜᴜʟᴜ!. sɪʟᴀʜᴋᴀɴ ᴋʟɪᴋ ᴛᴏᴍʙᴏʟ ᴅɪ ʙᴀᴡᴀʜ ᴜɴᴛᴜᴋ ᴊᴏɪɴ ᴋᴇ ᴄʜᴀɴɴᴇʟ ᴜᴘᴅᴀᴛᴇ</b></blockquote>",
+                        disable_web_page_preview=True,
+                        reply_markup=InlineKeyboardMarkup(
+                            [[InlineKeyboardButton("๏ 🏷️ ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟs ๏", url=link)]]
+                        ),
+                    )
+                    await message.stop_propagation()
+                except ChatWriteForbidden:
+                    pass
+        except ChatAdminRequired:
+            await message.reply(
+                f"Saya bukan admin di chat MUST_JOIN chat : {MUST_JOIN} !"
+            )
+        return await func(_, message)
+
+    return wrapper
+
 
 # Command
 PLAY_COMMAND = get_command("PLAY_COMMAND")
@@ -44,6 +73,7 @@ PLAY_COMMAND = get_command("PLAY_COMMAND")
 
 @app.on_message(filters.command(PLAY_COMMAND) & filters.group & ~BANNED_USERS)
 @PlayWrapper
+@subcribe
 async def play_commnd(
     client,
     message: Message,
@@ -294,7 +324,7 @@ async def play_commnd(
             return await mystic.delete()
         else:
             try:
-                await Alexa.stream_call(url)
+                await Amon.stream_call(url)
             except NoActiveGroupCall:
                 await mystic.edit_text(
                     "ᴛʜᴇʀᴇ's ᴀɴ ᴇʀʀᴏʀ ɪɴ ᴛʜᴇ ʙᴏᴛ, ᴩʟᴇᴀsᴇ ʀᴇᴩᴏʀᴛ ɪᴛ ᴛᴏ sᴜᴩᴩᴏʀᴛ ᴄʜᴀᴛ ᴀs sᴏᴏɴ ᴀs ᴩᴏssɪʙʟᴇ."
