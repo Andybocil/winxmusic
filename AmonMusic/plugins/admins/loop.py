@@ -1,23 +1,12 @@
-# Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
-# Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
-
-"""
-TheTeamAlexa is a project of Telegram bots with variety of purposes.
-Copyright (c) 2021 ~ Present Team Alexa <https://github.com/TheTeamAlexa>
-
-This program is free software: you can redistribute it and can modify
-as you want or you can collabe if you have new ideas.
-"""
-
-
 from pyrogram import filters
 from pyrogram.types import Message
 
 from config import BANNED_USERS
 from strings import get_command
-from AlexaMusic import app
-from AlexaMusic.utils.database.memorydatabase import get_loop, set_loop
-from AlexaMusic.utils.decorators import AdminRightsCheck
+from AmonMusic import app
+from AmonMusic.utils.database.memorydatabase import get_loop, set_loop
+from AmonMusic.utils.decorators import AdminRightsCheck
+from AmonMusic.utils.inline import close_markup
 
 # Commands
 LOOP_COMMAND = get_command("LOOP_COMMAND")
@@ -47,10 +36,14 @@ async def admins(cli, message: Message, _, chat_id):
     elif state.lower() == "enable":
         await set_loop(chat_id, 10)
         return await message.reply_text(
-            _["admin_25"].format(message.from_user.first_name, state)
-        )
+            _["admin_25"].format(message.from_user.mention, state),
+                reply_markup=close_markup(_),
+            )
     elif state.lower() == "disable":
         await set_loop(chat_id, 0)
-        return await message.reply_text(_["admin_27"])
+        return await message.reply_text(
+            _["admin_27"].format(message.from_user.mention),
+            reply_markup=close_markup(_),
+        )
     else:
         return await message.reply_text(usage)
