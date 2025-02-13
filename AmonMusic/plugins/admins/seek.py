@@ -1,24 +1,13 @@
-# Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
-# Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
-
-"""
-TheTeamAlexa is a project of Telegram bots with variety of purposes.
-Copyright (c) 2021 ~ Present Team Alexa <https://github.com/TheTeamAlexa>
-
-This program is free software: you can redistribute it and can modify
-as you want or you can collabe if you have new ideas.
-"""
-
-
 from pyrogram import filters
 from pyrogram.types import Message
 
 from config import BANNED_USERS
 from strings import get_command
-from AlexaMusic import YouTube, app
-from AlexaMusic.core.call import Alexa
-from AlexaMusic.misc import db
-from AlexaMusic.utils import AdminRightsCheck, seconds_to_min
+from AmonMusic import YouTube, app
+from AmonMusic.core.call import Amon
+from AmonMusic.misc import db
+from AmonMusic.utils import AdminRightsCheck, seconds_to_min
+from AmonMusic.utils.inline import close_markup
 
 # Commands
 SEEK_COMMAND = get_command("SEEK_COMMAND")
@@ -47,13 +36,15 @@ async def seek_comm(cli, message: Message, _, chat_id):
     if message.command[0][-2] == "c":
         if (duration_played - duration_to_skip) <= 10:
             return await message.reply_text(
-                _["admin_31"].format(seconds_to_min(duration_played), duration)
+                _["admin_31"].format(seconds_to_min(duration_played), duration),
+                reply_markup=close_markup(_),
             )
         to_seek = duration_played - duration_to_skip + 1
     else:
         if (duration_seconds - (duration_played + duration_to_skip)) <= 10:
             return await message.reply_text(
-                _["admin_31"].format(seconds_to_min(duration_played), duration)
+                _["admin_31"].format(seconds_to_min(duration_played), duration),
+                reply_markup=close_markup(_),
             )
         to_seek = duration_played + duration_to_skip + 1
     mystic = await message.reply_text(_["admin_32"])
@@ -75,4 +66,7 @@ async def seek_comm(cli, message: Message, _, chat_id):
         db[chat_id][0]["played"] -= duration_to_skip
     else:
         db[chat_id][0]["played"] += duration_to_skip
-    await mystic.edit_text(_["admin_33"].format(seconds_to_min(to_seek)))
+    await mystic.edit_text(
+        _["admin_33"].format(seconds_to_min(to_seek), message.from_user.mention),
+        reply_markup=close_markup(_),
+    )
