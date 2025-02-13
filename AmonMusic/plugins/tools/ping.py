@@ -1,42 +1,36 @@
-# Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
-# Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
-
-"""
-TheTeamAlexa is a project of Telegram bots with variety of purposes.
-Copyright (c) 2021 ~ Present Team Alexa <https://github.com/TheTeamAlexa>
-
-This program is free software: you can redistribute it and can modify
-as you want or you can collabe if you have new ideas.
-"""
-
-
 from datetime import datetime
 
 from pyrogram import filters
 from pyrogram.types import Message
 
-from config import BANNED_USERS, MUSIC_BOT_NAME, PING_IMG_URL
+from config import BANNED_USERS
 from strings import get_command
-from AlexaMusic import app
-from AlexaMusic.core.call import Alexa
-from AlexaMusic.utils import bot_sys_stats
-from AlexaMusic.utils.decorators.language import language
+from AmonMusic import app
+from AmonMusic.core.call import Auput
+from AmonMusic.utils import bot_sys_stats
+from AmonMusic.utils.inline import supp_markup
+from AmonMusic.utils.decorators.language import language
 
 ### Commands
 PING_COMMAND = get_command("PING_COMMAND")
 
 
-@app.on_message(filters.command(PING_COMMAND) & filters.group & ~BANNED_USERS)
+@app.on_message(
+    filters.command(PING_COMMAND)    
+    & ~BANNED_USERS
+)
 @language
 async def ping_com(client, message: Message, _):
-    response = await message.reply_photo(
-        photo=PING_IMG_URL,
-        caption=_["ping_1"],
+    response = await message.reply_video(
+        video="https://graph.org/file/6a1cc00dd294562d5f03a-65f43fe56a9ff6b909.mp4",
+        caption=_["ping_1"].format(app.mention),
     )
     start = datetime.now()
-    pytgping = await Alexa.ping()
+    pytgping = await Auput.ping()
     UP, CPU, RAM, DISK = await bot_sys_stats()
     resp = (datetime.now() - start).microseconds / 1000
+    resp = (datetime.now() - start).microseconds / 1000
     await response.edit_text(
-        _["ping_2"].format(resp, MUSIC_BOT_NAME, UP, RAM, CPU, DISK, pytgping)
+        _["ping_2"].format(resp, app.mention, UP, RAM, CPU, DISK, pytgping),
+        reply_markup=supp_markup(_),
     )
