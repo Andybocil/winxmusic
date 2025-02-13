@@ -1,15 +1,3 @@
-# Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
-# Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
-
-"""
-TheTeamAlexa is a project of Telegram bots with variety of purposes.
-Copyright (c) 2021 ~ Present Team Alexa <https://github.com/TheTeamAlexa>
-
-This program is free software: you can redistribute it and can modify
-as you want or you can collabe if you have new ideas.
-"""
-
-
 import asyncio
 import random
 from datetime import datetime, timedelta
@@ -17,8 +5,8 @@ from datetime import datetime, timedelta
 import config
 from config import clean
 from strings import get_string
-from AlexaMusic import app
-from AlexaMusic.utils.database import (
+from AmonMusic import app
+from AmonMusic.utils.database import (
     get_lang,
     get_private_served_chats,
     get_served_chats,
