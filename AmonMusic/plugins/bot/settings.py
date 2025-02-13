@@ -1,15 +1,3 @@
-# Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
-# Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
-
-"""
-TheTeamAlexa is a project of Telegram bots with variety of purposes.
-Copyright (c) 2021 ~ Present Team Alexa <https://github.com/TheTeamAlexa>
-
-This program is free software: you can redistribute it and can modify
-as you want or you can collabe if you have new ideas.
-"""
-
-
 from pyrogram import filters
 from pyrogram.errors import MessageNotModified
 from pyrogram.types import (
@@ -21,9 +9,9 @@ from pyrogram.types import (
 
 from config import BANNED_USERS, CLEANMODE_DELETE_MINS, MUSIC_BOT_NAME, OWNER_ID
 from strings import get_command
-from AlexaMusic import app
+from AmonMusic import app
 from pyrogram.enums import ChatType
-from AlexaMusic.utils.database import (
+from AmonMusic.utils.database import (
     add_nonadmin_chat,
     cleanmode_off,
     cleanmode_on,
@@ -47,9 +35,9 @@ from AlexaMusic.utils.database import (
     suggestion_off,
     suggestion_on,
 )
-from AlexaMusic.utils.decorators.admins import ActualAdminCB
-from AlexaMusic.utils.decorators.language import language, languageCB
-from AlexaMusic.utils.inline.settings import (
+from AmonMusic.utils.decorators.admins import ActualAdminCB
+from AmonMusic.utils.decorators.language import language, languageCB
+from AmonMusic.utils.inline.settings import (
     audio_quality_markup,
     auth_users_markup,
     cleanmode_settings_markup,
@@ -57,7 +45,7 @@ from AlexaMusic.utils.inline.settings import (
     setting_markup,
     video_quality_markup,
 )
-from AlexaMusic.utils.inline.start import private_panel
+from AmonMusic.utils.inline.start import private_panel
 
 ### Command
 SETTINGS_COMMAND = get_command("SETTINGS_COMMAND")
