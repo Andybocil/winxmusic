@@ -1,14 +1,3 @@
-# Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
-# Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
-
-"""
-TheTeamAlexa is a project of Telegram bots with variety of purposes.
-Copyright (c) 2021 ~ Present Team Alexa <https://github.com/TheTeamAlexa>
-
-This program is free software: you can redistribute it and can modify
-as you want or you can collabe if you have new ideas.
-"""
-
 import asyncio
 
 from pyrogram import filters
@@ -17,12 +6,12 @@ from pyrogram.types import CallbackQuery, Message
 
 from config import BANNED_USERS, MUSIC_BOT_NAME, adminlist, lyrical
 from strings import get_command
-from AlexaMusic import app
-from AlexaMusic.core.call import Alexa
-from AlexaMusic.misc import db
-from AlexaMusic.utils.database import get_authuser_names, get_cmode
-from AlexaMusic.utils.decorators import ActualAdminCB, AdminActual, language
-from AlexaMusic.utils.formatters import alpha_to_int
+from AmonMusic import app
+from AmonMusic.core.call import Amon
+from AmonMusic.misc import db
+from AmonMusic.utils.database import get_authuser_names, get_cmode
+from AmonMusic.utils.decorators import ActualAdminCB, AdminActual, language
+from AmonMusic.utils.formatters import alpha_to_int
 
 ### Multi-Lang Commands
 RELOAD_COMMAND = get_command("RELOAD_COMMAND")
@@ -59,7 +48,7 @@ async def restartbot(client, message: Message, _):
     await asyncio.sleep(1)
     try:
         db[message.chat.id] = []
-        await Alexa.stop_stream(message.chat.id)
+        await Amon.stop_stream(message.chat.id)
     except:
         pass
     chat_id = await get_cmode(message.chat.id)
@@ -70,7 +59,7 @@ async def restartbot(client, message: Message, _):
             pass
         try:
             db[chat_id] = []
-            await Alexa.stop_stream(chat_id)
+            await Amon.stop_stream(chat_id)
         except:
             pass
     return await mystic.edit_text(
@@ -79,12 +68,17 @@ async def restartbot(client, message: Message, _):
 
 
 @app.on_callback_query(filters.regex("close") & ~BANNED_USERS)
-async def close_menu(_, CallbackQuery):
+async def close_menu(_, query: CallbackQuery):
     try:
-        await CallbackQuery.message.delete()
-        await CallbackQuery.answer()
+        await query.answer()
+        await query.message.delete()
+        umm = await query.message.reply_text(
+            f"ᴄʟᴏꜱᴇ ʙʏ : {query.from_user.mention}"
+        )
+        await asyncio.sleep(2)
+        await umm.delete()
     except:
-        return
+        pass
 
 
 @app.on_callback_query(filters.regex("close") & ~BANNED_USERS)
@@ -94,7 +88,6 @@ async def close_menu(_, CallbackQuery):
         await CallbackQuery.answer()
     except:
         return
-
 
 @app.on_callback_query(filters.regex("stop_downloading") & ~BANNED_USERS)
 @ActualAdminCB
