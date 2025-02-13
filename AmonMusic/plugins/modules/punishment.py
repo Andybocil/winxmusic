@@ -1,14 +1,3 @@
-# Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
-# Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
-
-"""
-TheTeamAlexa is a project of Telegram bots with variety of purposes.
-Copyright (c) 2021 ~ Present Team Alexa <https://github.com/TheTeamAlexa>
-
-This program is free software: you can redistribute it and can modify
-as you want or you can collabe if you have new ideas.
-"""
-
 import asyncio
 import time
 
@@ -18,10 +7,10 @@ from pyrogram.types import Message
 
 from config import BANNED_USERS
 from strings import get_command
-from AlexaMusic import app
-from AlexaMusic.misc import SUDOERS
-from AlexaMusic.utils import get_readable_time
-from AlexaMusic.utils.database import (
+from AmonMusic import app
+from AmonMusic.misc import SUDOERS
+from AmonMusic.utils import get_readable_time
+from AmonMusic.utils.database import (
     add_banned_user,
     get_banned_count,
     get_banned_users,
@@ -29,7 +18,7 @@ from AlexaMusic.utils.database import (
     is_banned_user,
     remove_banned_user,
 )
-from AlexaMusic.utils.decorators.language import language
+from AmonMusic.utils.decorators.language import language
 
 # Command
 GBAN_COMMAND = get_command("GBAN_COMMAND")
