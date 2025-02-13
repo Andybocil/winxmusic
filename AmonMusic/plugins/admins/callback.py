@@ -1,15 +1,3 @@
-# Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
-# Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
-
-"""
-TheTeamAlexa is a project of Telegram bots with variety of purposes.
-Copyright (c) 2021 ~ Present Team Alexa <https://github.com/TheTeamAlexa>
-
-This program is free software: you can redistribute it and can modify
-as you want or you can collabe if you have new ideas.
-"""
-
-
 import random
 
 from pyrogram import filters
@@ -24,10 +12,10 @@ from config import (
     TELEGRAM_VIDEO_URL,
     adminlist,
 )
-from AlexaMusic import YouTube, app
-from AlexaMusic.core.call import Alexa
-from AlexaMusic.misc import SUDOERS, db
-from AlexaMusic.utils.database import (
+from AmonMusic import YouTube, app
+from AmonMusic.core.call import Amon
+from AmonMusic.misc import SUDOERS, db
+from AmonMusic.utils.database import (
     is_active_chat,
     is_music_playing,
     is_muted,
@@ -38,11 +26,12 @@ from AlexaMusic.utils.database import (
     mute_on,
     set_loop,
 )
-from AlexaMusic.utils.decorators.language import languageCB
-from AlexaMusic.utils.formatters import seconds_to_min
-from AlexaMusic.utils.inline.play import panel_markup_1, stream_markup, telegram_markup
-from AlexaMusic.utils.stream.autoclear import auto_clean
-from AlexaMusic.utils.thumbnails import gen_thumb
+from AmonMusic.utils.decorators.language import languageCB
+from AmonMusic.utils.formatters import seconds_to_min
+from AmonMusic.utils.inline.play import panel_markup_1, stream_markup, telegram_markup
+from AmonMusic.utils.stream.autoclear import auto_clean
+from AmonMusic.utils.thumbnails import gen_thumb
+from AmonMusic.utils.inline import close_markup
 
 wrong = {}
 
@@ -118,43 +107,43 @@ async def del_back_playlist(client, CallbackQuery, _):
             return await CallbackQuery.answer(_["admin_1"], show_alert=True)
         await CallbackQuery.answer()
         await music_off(chat_id)
-        await Alexa.pause_stream(chat_id)
+        await Amon.pause_stream(chat_id)
         await CallbackQuery.message.reply_text(
-            _["admin_2"].format(mention), disable_web_page_preview=True
+            _["admin_2"].format(mention), reply_markup=close_markup(_)
         )
     elif command == "Resume":
         if await is_music_playing(chat_id):
             return await CallbackQuery.answer(_["admin_3"], show_alert=True)
         await CallbackQuery.answer()
         await music_on(chat_id)
-        await Alexa.resume_stream(chat_id)
+        await Amon.resume_stream(chat_id)
         await CallbackQuery.message.reply_text(
-            _["admin_4"].format(mention), disable_web_page_preview=True
+            _["admin_4"].format(mention), reply_markup=close_markup(_)
         )
     elif command == "Stop" or command == "End":
         await CallbackQuery.answer()
-        await Alexa.stop_stream(chat_id)
+        await Amon.stop_stream(chat_id)
         await set_loop(chat_id, 0)
         await CallbackQuery.message.reply_text(
-            _["admin_9"].format(mention), disable_web_page_preview=True
+            _["admin_9"].format(mention), reply_markup=close_markup(_)
         )
     elif command == "Mute":
         if await is_muted(chat_id):
             return await CallbackQuery.answer(_["admin_5"], show_alert=True)
         await CallbackQuery.answer()
         await mute_on(chat_id)
-        await Alexa.mute_stream(chat_id)
+        await Amon.mute_stream(chat_id)
         await CallbackQuery.message.reply_text(
-            _["admin_6"].format(mention), disable_web_page_preview=True
+            _["admin_6"].format(mention), reply_markup=close_markup(_)
         )
     elif command == "Unmute":
         if not await is_muted(chat_id):
             return await CallbackQuery.answer(_["admin_7"], show_alert=True)
         await CallbackQuery.answer()
         await mute_off(chat_id)
-        await Alexa.unmute_stream(chat_id)
+        await Amon.unmute_stream(chat_id)
         await CallbackQuery.message.reply_text(
-            _["admin_8"].format(mention), disable_web_page_preview=True
+            _["admin_8"].format(mention), reply_markup=close_markup(_)
         )
     elif command == "Loop":
         await CallbackQuery.answer()
@@ -176,7 +165,7 @@ async def del_back_playlist(client, CallbackQuery, _):
         random.shuffle(check)
         check.insert(0, popped)
         await CallbackQuery.message.reply_text(
-            _["admin_23"].format(mention), disable_web_page_preview=True
+            _["admin_23"].format(mention), reply_markup=close_markup(_)
         )
     elif command == "Skip":
         check = db.get(chat_id)
@@ -188,21 +177,31 @@ async def del_back_playlist(client, CallbackQuery, _):
                 if AUTO_DOWNLOADS_CLEAR == str(True):
                     await auto_clean(popped)
             if not check:
-                await CallbackQuery.edit_message_text(f"» ᴛʀᴀᴄᴋ sᴋɪᴩᴩᴇᴅ ʙʏ {mention} !")
-                await CallbackQuery.message.reply_text(
-                    _["admin_10"].format(mention), disable_web_page_preview=True
+                await CallbackQuery.edit_message_text(
+                    f"➻ sᴛʀᴇᴀᴍ sᴋɪᴩᴩᴇᴅ 🎄\n│ \n└ʙʏ : {mention} 🥀"
                 )
+                await CallbackQuery.message.reply_text(
+                    _["admin_10"].format(
+                            mention, CallbackQuery.message.chat.title
+                        ),
+                        reply_markup=close_markup(_),
+                    )
                 try:
-                    return await Alexa.stop_stream(chat_id)
+                    return await Amon.stop_stream(chat_id)
                 except:
                     return
         except:
             try:
-                await CallbackQuery.edit_message_text(f"» ᴛʀᴀᴄᴋ sᴋɪᴩᴩᴇᴅ ʙʏ {mention} !")
+                await CallbackQuery.edit_message_text(
+                        f"➻ sᴛʀᴇᴀᴍ sᴋɪᴩᴩᴇᴅ 🎄\n│ \n└ʙʏ : {mention} 🥀"
+                    )
                 await CallbackQuery.message.reply_text(
-                    _["admin_10"].format(mention), disable_web_page_preview=True
-                )
-                return await Alexa.stop_stream(chat_id)
+                    _["admin_10"].format(
+                            mention, CallbackQuery.message.chat.title
+                        ),
+                        reply_markup=close_markup(_),
+                    )
+                return await Amon.stop_stream(chat_id)
             except:
                 return
         await CallbackQuery.answer()
@@ -220,10 +219,11 @@ async def del_back_playlist(client, CallbackQuery, _):
             n, link = await YouTube.video(videoid, True)
             if n == 0:
                 return await CallbackQuery.message.reply_text(
-                    _["admin_11"].format(title)
+                    _["admin_11"].format(title),
+                    reply_markup=close_markup(_),
                 )
             try:
-                await Alexa.skip_stream(chat_id, link, video=status)
+                await Amon.skip_stream(chat_id, link, video=status)
             except Exception:
                 return await CallbackQuery.message.reply_text(_["call_9"])
             # theme = await check_theme(chat_id)
@@ -239,7 +239,7 @@ async def del_back_playlist(client, CallbackQuery, _):
             )
             db[chat_id][0]["mystic"] = run
             db[chat_id][0]["markup"] = "tg"
-            await CallbackQuery.edit_message_text(txt)
+            await CallbackQuery.edit_message_text(txt, reply_markup=close_markup(_))
         elif "vid_" in queued:
             mystic = await CallbackQuery.message.reply_text(
                 _["call_10"], disable_web_page_preview=True
@@ -254,7 +254,7 @@ async def del_back_playlist(client, CallbackQuery, _):
             except:
                 return await mystic.edit_text(_["call_9"])
             try:
-                await Alexa.skip_stream(chat_id, file_path, video=status)
+                await Amon.skip_stream(chat_id, file_path, video=status)
             except Exception:
                 return await mystic.edit_text(_["call_9"])
             # theme = await check_theme(chat_id)
@@ -272,11 +272,11 @@ async def del_back_playlist(client, CallbackQuery, _):
             )
             db[chat_id][0]["mystic"] = run
             db[chat_id][0]["markup"] = "stream"
-            await CallbackQuery.edit_message_text(txt)
+            await CallbackQuery.edit_message_text(txt, reply_markup=close_markup(_))
             await mystic.delete()
         elif "index_" in queued:
             try:
-                await Alexa.skip_stream(chat_id, videoid, video=status)
+                await Amon.skip_stream(chat_id, videoid, video=status)
             except Exception:
                 return await CallbackQuery.message.reply_text(_["call_9"])
             button = telegram_markup(_, chat_id)
@@ -287,10 +287,10 @@ async def del_back_playlist(client, CallbackQuery, _):
             )
             db[chat_id][0]["mystic"] = run
             db[chat_id][0]["markup"] = "tg"
-            await CallbackQuery.edit_message_text(txt)
+            await CallbackQuery.edit_message_text(txt, reply_markup=close_markup(_))
         else:
             try:
-                await Alexa.skip_stream(chat_id, queued, video=status)
+                await Amon.skip_stream(chat_id, queued, video=status)
             except Exception:
                 return await CallbackQuery.message.reply_text(_["call_9"])
             if videoid == "telegram":
@@ -335,7 +335,7 @@ async def del_back_playlist(client, CallbackQuery, _):
                 )
                 db[chat_id][0]["mystic"] = run
                 db[chat_id][0]["markup"] = "stream"
-            await CallbackQuery.edit_message_text(txt)
+            await CallbackQuery.edit_message_text(txt, reply_markup=close_markup(_))
     else:
         playing = db.get(chat_id)
         if not playing:
@@ -375,7 +375,7 @@ async def del_back_playlist(client, CallbackQuery, _):
             if n == 0:
                 return await mystic.edit_text(_["admin_30"])
         try:
-            await Alexa.seek_stream(
+            await Amon.seek_stream(
                 chat_id,
                 file_path,
                 seconds_to_min(to_seek),
