@@ -8,16 +8,21 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtubesearchpython.__future__ import VideosSearch
 
 import config
-from config import BANNED_USERS
+from config import BANNED_USERS, MEKI
 from config.config import OWNER_ID
 from strings import get_command, get_string
+from AmonMusic.misc import _boot_
+from AmonMusic.utils import bot_sys_stats
 from AmonMusic import Telegram, YouTube, app
 from AmonMusic.misc import SUDOERS
+from AmonMusic.utils.formatters import get_readable_time
 from AmonMusic.plugins.play.playlist import del_plist_msg
 from AmonMusic.plugins.sudo.sudoers import sudoers_list
 from AmonMusic.utils.database import (
     add_served_chat,
     is_served_user,
+    get_served_chats,
+    get_served_users,
     add_served_user,
     blacklisted_chats,
     get_assistant,
