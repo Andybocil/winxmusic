@@ -1,4 +1,4 @@
-from Auput import app
+from AmonMusic import app
 from config import BOT_USERNAME
 from pyrogram import filters
 from AmonMusic.utils.memex_ban import admin_filter
