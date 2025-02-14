@@ -1,13 +1,3 @@
-# Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
-# Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
-
-"""
-TheTeamAlexa is a project of Telegram bots with variety of purposes.
-Copyright (c) 2021 ~ Present Team Alexa <https://github.com/TheTeamAlexa>
-
-This program is free software: you can redistribute it and can modify
-as you want or you can collabe if you have new ideas.
-"""
 import asyncio
 
 from pyrogram.enums import ChatMemberStatus
@@ -20,11 +10,11 @@ from pyrogram.errors import (
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from config import PLAYLIST_IMG_URL, PRIVATE_BOT_MODE, adminlist
-from AlexaMusic.misc import db
+from AmonMusic.misc import db
 from strings import get_string
-from AlexaMusic import YouTube, app
-from AlexaMusic.misc import SUDOERS
-from AlexaMusic.utils.database import (
+from AmonMusic import YouTube, app
+from AmonMusic.misc import SUDOERS
+from AmonMusic.utils.database import (
     get_cmode,
     get_lang,
     get_playmode,
@@ -34,8 +24,8 @@ from AlexaMusic.utils.database import (
     is_commanddelete_on,
     is_served_private_chat,
 )
-from AlexaMusic.utils.database.memorydatabase import is_maintenance
-from AlexaMusic.utils.inline.playlist import botplaylist_markup
+from AmonMusic.utils.database.memorydatabase import is_maintenance
+from AmonMusic.utils.inline.playlist import botplaylist_markup
 
 links = {}
 
