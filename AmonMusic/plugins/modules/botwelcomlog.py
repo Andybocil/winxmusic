@@ -1,7 +1,7 @@
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from config import LOG, LOG_GROUP_ID
-from AmomMusic import app
+from AmonMusic import app
 from AmonMusic.utils.database import delete_served_chat, get_assistant, is_on_off
 
 
