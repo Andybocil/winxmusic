@@ -16,7 +16,7 @@ from AmonMusic.utils.exceptions import AssistantErr
 from AmonMusic.utils.inline.play import (stream_markup,
                                           telegram_markup)
 from AmonMusic.utils.inline.playlist import close_markup
-from AmonMusic.utils.pastebin import AmonBin
+from AmonMusic.utils.pastebin import Amonbin
 from AmonMusic.utils.stream.queue import put_queue, put_queue_index
 from AmonMusic.utils.thumbnails import gen_thumb
 from AmonMusic.utils.inline.queue import aq_markup
