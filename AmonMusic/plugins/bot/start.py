@@ -32,7 +32,7 @@ from AmonMusic.utils.database import (
     is_served_private_chat,
 )
 from AmonMusic.utils.decorators.language import LanguageStart
-from AmonMusic.utils.inline import help_pannel, private_panel, start_pannel
+from AmonMusic.utils.inline import first_page, help_pannel, private_panel, start_pannel
 from AmonMusic.utils.command import commandpro
 
 loop = asyncio.get_running_loop()
