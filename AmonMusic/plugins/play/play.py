@@ -365,7 +365,7 @@ async def play_commnd(
             return await mystic.delete()
         else:
             try:
-                await Auput.stream_call(url)
+                await Amon.stream_call(url)
             except NoActiveGroupCall:
                 await mystic.edit_text(
                     "There's an issue with the bot. Please report it to my owner and ask them to check logger group."
