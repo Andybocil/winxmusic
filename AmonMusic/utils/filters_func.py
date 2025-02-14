@@ -1,5 +1,5 @@
 from enum import Enum, auto
-from Auput import app
+from AmonMusic import app
 from pyrogram.types import InlineKeyboardMarkup, Message
 from AmonMusic.utils.msg_types import button_markdown_parser
 from AmonMusic.utils.notes_func import NoteFillings
