@@ -28,6 +28,10 @@ ASSUSERNAME = getenv("ASSUSERNAME", "assistenfrr")
 
 OWNER_ID = int(getenv("OWNER_ID", "7369463399"))
 
+OWNER_USERNAME = getenv("OWNER_USERNAME", "ownercpkoid")
+
+BOT_USERNAME = getenv("BOT_USERNAME" , "amonrobot_bot")
+
 EVALOP = list(map(int, getenv("EVALOP", "7369463399").split()))
 
 HEROKU_API_KEY = getenv("HEROKU_API_KEY")
