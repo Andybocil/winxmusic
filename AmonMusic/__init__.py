@@ -23,7 +23,7 @@ heroku()
 save_cookies()
 
 # Bot Client
-app = AlexaBot()
+app = AmonBot()
 
 # Assistant Client
 userbot = Userbot()
