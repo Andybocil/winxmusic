@@ -1,4 +1,4 @@
-from Auput.utils.mongo import db
+from AmonMusic.utils.mongo import db
 
 
 
