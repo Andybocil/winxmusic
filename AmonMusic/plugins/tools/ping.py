@@ -6,7 +6,7 @@ from pyrogram.types import Message
 from config import BANNED_USERS
 from strings import get_command
 from AmonMusic import app
-from AmonMusic.core.call import Auput
+from AmonMusic.core.call import Amon
 from AmonMusic.utils import bot_sys_stats
 from AmonMusic.utils.inline import supp_markup
 from AmonMusic.utils.decorators.language import language
@@ -26,7 +26,7 @@ async def ping_com(client, message: Message, _):
         caption=_["ping_1"].format(app.mention),
     )
     start = datetime.now()
-    pytgping = await Auput.ping()
+    pytgping = await Amon.ping()
     UP, CPU, RAM, DISK = await bot_sys_stats()
     resp = (datetime.now() - start).microseconds / 1000
     resp = (datetime.now() - start).microseconds / 1000
