@@ -14,7 +14,7 @@ from config import BANNED_USERS, MUSIC_BOT_NAME
 from strings import get_command
 from AmonMusic import YouTube, app
 from AmonMusic.core.userbot import assistants
-from AmonMusic.misc import SUDOERS, pymongodb
+from AmonMusic.misc import SUDOERS, mongodb
 from AmonMusic.plugins import ALL_MODULES
 from AmonMusic.utils.database import (get_global_tops,
                                        get_particulars, get_queries,
