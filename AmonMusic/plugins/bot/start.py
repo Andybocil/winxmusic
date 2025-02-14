@@ -32,7 +32,7 @@ from AmonMusic.utils.database import (
     is_served_private_chat,
 )
 from AmonMusic.utils.decorators.language import LanguageStart
-from .AmonMusicutils.inline import (first_page, private_panel,
+from .AmonMusic.utils.inline import (first_page, private_panel,
                                      start_pannel)
 from AmonMusic.utils.command import commandpro
 
