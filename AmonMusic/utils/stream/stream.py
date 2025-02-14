@@ -1,15 +1,3 @@
-# Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
-# Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
-
-"""
-TheTeamAlexa is a project of Telegram bots with variety of purposes.
-Copyright (c) 2021 ~ Present Team Alexa <https://github.com/TheTeamAlexa>
-
-This program is free software: you can redistribute it and can modify
-as you want or you can collabe if you have new ideas.
-"""
-
-
 import os
 from random import randint
 from typing import Union
@@ -17,23 +5,23 @@ from typing import Union
 from pyrogram.types import InlineKeyboardMarkup
 
 import config
-from AlexaMusic import Carbon, YouTube, app
-from AlexaMusic.core.call import Alexa
-from AlexaMusic.misc import db
-from AlexaMusic.utils.database import (
+from AmonMusic import Carbon, YouTube, app
+from AmonMusic.core.call import Amon
+from AmonMusic.misc import db
+from AmonMusic.utils.database import (
     add_active_chat,
     add_active_video_chat,
     is_active_chat,
     is_video_allowed,
     music_on,
 )
-from AlexaMusic.utils.exceptions import AssistantErr
-from AlexaMusic.utils.inline.play import stream_markup, queue_markup, telegram_markup
-from AlexaMusic.utils.inline.playlist import close_markup
-from AlexaMusic.utils.pastebin import Alexabin
-from AlexaMusic.utils.stream.queue import put_queue, put_queue_index
-from AlexaMusic.utils.thumbnails import gen_thumb, gen_qthumb
-
+from AmonMusic.utils.exceptions import AssistantErr
+from AmonMusic.utils.inline.play import stream_markup, queue_markup, telegram_markup
+from AmonMusic.utils.inline.playlist import close_markup
+from AmonMusic.utils.pastebin import Amonbin
+from AmonMusic.utils.stream.queue import put_queue, put_queue_index
+from AmonMusic.utils.thumbnails import gen_thumb, gen_qthumb
+from AmonMusic.utils.inline.queue import aq_markup
 
 async def stream(
     _,
@@ -54,7 +42,7 @@ async def stream(
         if not await is_video_allowed(chat_id):
             raise AssistantErr(_["play_7"])
     if forceplay:
-        await Alexa.force_stop_stream(chat_id)
+        await Amon.force_stop_stream(chat_id)
     if streamtype == "playlist":
         msg = f"{_['playlist_16']}\n\n"
         count = 0
@@ -101,7 +89,7 @@ async def stream(
                     )
                 except:
                     raise AssistantErr(_["play_16"])
-                await Alexa.join_call(
+                await Amon.join_call(
                     chat_id, original_chat_id, file_path, video=status, image=thumbnail
                 )
                 await put_queue(
@@ -135,7 +123,7 @@ async def stream(
         if count == 0:
             return
         else:
-            link = await Alexabin(msg)
+            link = await Amonbin(msg)
             lines = msg.count("\n")
             if lines >= 17:
                 car = os.linesep.join(msg.split(os.linesep)[:17])
@@ -189,7 +177,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await Alexa.join_call(
+            await Amon.join_call(
                 chat_id, original_chat_id, file_path, video=status, image=thumbnail
             )
             await put_queue(
@@ -247,7 +235,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await Alexa.join_call(chat_id, original_chat_id, file_path, video=None)
+            await Amon.join_call(chat_id, original_chat_id, file_path, video=None)
             await put_queue(
                 chat_id,
                 original_chat_id,
@@ -295,7 +283,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await Alexa.join_call(chat_id, original_chat_id, file_path, video=status)
+            await Amon.join_call(chat_id, original_chat_id, file_path, video=status)
             await put_queue(
                 chat_id,
                 original_chat_id,
@@ -349,7 +337,7 @@ async def stream(
             n, file_path = await YouTube.video(link)
             if n == 0:
                 raise AssistantErr(_["str_3"])
-            await Alexa.join_call(
+            await Amon.join_call(
                 chat_id,
                 original_chat_id,
                 file_path,
@@ -406,7 +394,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await Alexa.join_call(
+            await Amon.join_call(
                 chat_id,
                 original_chat_id,
                 link,
