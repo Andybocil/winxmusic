@@ -31,7 +31,6 @@ img2pdf
 instaloader
 langdetect
 lyricsgenius
-googletrans==4.0.0-rc1
 lexica-api
 motor
 numpy
