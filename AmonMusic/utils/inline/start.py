@@ -98,7 +98,7 @@ def private_panel(_, BOT_USERNAME, OWNER: Union[bool, int] = None):
             [
                 InlineKeyboardButton(text=_["S_B_7"], user_id=OWNER),
                 InlineKeyboardButton(
-                    text="ᴊᴀsᴀ ʙᴏᴛ", callback_data="pay"
+                    text="💻 ᴊᴀsᴀ ʙᴏᴛ", callback_data="pay"
                 ),
             ]
         )
@@ -107,7 +107,7 @@ def private_panel(_, BOT_USERNAME, OWNER: Union[bool, int] = None):
             buttons.append(
                 [
                     InlineKeyboardButton(
-                        text="ᴊᴀsᴀ ʙᴏᴛ", callback_data="pay"
+                        text="💻 ᴊᴀsᴀ ʙᴏᴛ", callback_data="pay"
                     ),
                 ]
             )
@@ -123,7 +123,7 @@ def private_panel(_, BOT_USERNAME, OWNER: Union[bool, int] = None):
         [
             InlineKeyboardButton(text=_["ST_B_6"], callback_data="LG"),
             InlineKeyboardButton(
-                text="ᴅᴏɴᴀᴛᴇ", url="https://telegra.ph//file/d71d3b154aa2350962ce9.jpg"
+                text="💵 ᴅᴏɴᴀᴛᴇ", url="https://telegra.ph//file/d71d3b154aa2350962ce9.jpg"
             ),
         ]
                   )
