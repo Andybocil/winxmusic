@@ -1,16 +1,16 @@
-<h1 align="center"><b>❤️ 𝘼𝙡𝙚𝙭𝙖 𝙈𝙪𝙨𝙞𝙘 ❤️</b></h1>
+<h1 align="center"><b>❤️  𝘼𝙈𝙊𝙉 𝙈𝙐𝙎𝙄𝘾 ❤️</b></h1>
 
 <h4 align="center">
-    Introducing Alexa Music – your smart, powerful, and simple bot for seamless audio and video playback on Telegram. Written in Python with the latest Pyrogram, Alexa Music delivers a superior entertainment experience. Upgrade now for optimal performance and a new level of Telegram enjoyment.<br> Working With Pyrogram Latest Version...
+    Introducing Amon Music – your smart, powerful, and simple bot for seamless audio and video playback on Telegram. Written in Python with the latest Pyrogram, Amon Music delivers a superior entertainment experience. Upgrade now for optimal performance and a new level of Telegram enjoyment.<br> Working With Pyrogram Latest Version...
 </h4>
 <p align="center">
-    <a href="https://t.me/Alexa_BotUpdates">
+    <a href="https://t.me/memekpro">
         <img src="cover.png">
     </a>
 </p>
 <p align="center">
-    <a href="https://github.com/TheTeamAlexa/AlexaMusic"> <img src="https://img.shields.io/github/repo-size/TheTeamAlexa/AlexaMusic?color=orange&logo=github&logoColor=green&style=for-the-badge" /></a>
-    <a href="https://github.com/TheTeamAlexa/AlexaMusic/commits"> <img src="https://img.shields.io/github/last-commit/TheTeamAlexa/AlexaMusic?color=red&logo=github&logoColor=green&style=for-the-badge" /></a>
+    <a href="https://github.com/memex2711/AmonMusic"> <img src="https://img.shields.io/github/repo-size/memex2711/AmonMusic?color=orange&logo=github&logoColor=green&style=for-the-badge" /></a>
+    <a href="https://github.com/memex2711/AmonMusic/commits"> <img src="https://img.shields.io/github/last-commit/TheTeamAlexa/AlexaMusic?color=red&logo=github&logoColor=green&style=for-the-badge" /></a>
     <a href="https://github.com/TheTeamAlexa/AlexaMusic/issues"> <img src="https://img.shields.io/github/issues/TheTeamAlexa/AlexaMusic?color=blueviolet&logo=github&logoColor=green&style=for-the-badge" /></a>
     <a href="https://github.com/TheTeamAlexa/AlexaMusic/network/members"> <img src="https://img.shields.io/github/forks/TheTeamAlexa/AlexaMusic?color=red&logo=github&logoColor=green&style=for-the-badge" /></a>  
     <a href="https://pypi.org/project/Pyrogram"> <img src="https://img.shields.io/pypi/v/Pyrogram?color=yellow&label=Pyrogram&logo=python&logoColor=green&style=for-the-badge" /></a>
@@ -21,7 +21,7 @@
 
 Due to YouTube blocking ips, we found a fix. Given below:
 
-• **Join Support Group**: Type `#cookies` in our [sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ](https://t.me/Alexa_Help) to get the necessary extension link.
+• **Join Support Group**: Type `#cookies` in our [sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ](https://t.me/memexprojectback) to get the necessary extension link.
 
 • **Run the Extension**: Download [Firefox](https://www.mozilla.org) and login your youtube account<b>(Fake Account Recommended)</b> then run the downloaded extension on your Firefox or any other Software to generate cookies.
 
