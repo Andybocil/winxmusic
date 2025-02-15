@@ -1,14 +1,10 @@
-from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery, InputMediaPhoto
-from AmonMusic import app
+from pyrogram import filters
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from AmomMusic import app
 
-# URL atau Path gambar yang ingin ditampilkan
-PHOTO_URL = "https://telegra.ph/file/5c656925faa3d0265f640.jpg"  # Ganti dengan foto yang diinginkan
-
-# Data daftar jasa dan pembayaran
 class Data:
     JASA = """
-<b>DAFTAR JASA BOT:</b>
+<b>DAFTAR:</b>
 
 1. Pembuatan Bot Menfess
    Deskripsi: Bot untuk mengelola layanan postingan anonim (menfess) di grup.
@@ -39,85 +35,67 @@ class Data:
 Untuk informasi lebih lanjut dan pemesanan, silakan hubungi @ownercpkoid.
 """
 
-    DANA = "<b>DANA:</b> 081398871823"
+    DANA = "DANA : 081398871823"
+    
+    QRIS = """Klik Disini </b><a href='https://telegra.ph/file/3a8701cb42f9af1483800.jpg'>QRIS BrotherCloth</a>"""
 
-    QRIS = "<b>QRIS:</b> Klik <a href='https://telegra.ph/file/3a8701cb42f9af1483800.jpg'>Disini</a> untuk melihat QRIS BrotherCloth."
+    close = [
+        [InlineKeyboardButton("🔙 Kembali", callback_data="menu")]
+    ]
 
-    # Tombol utama
-    main_buttons = InlineKeyboardMarkup([
+    mbuttons = [
         [
             InlineKeyboardButton("🛒 JASA", callback_data="jasa"),
-            InlineKeyboardButton("💰 DANA", callback_data="dana"),
-            InlineKeyboardButton("💳 QRIS", callback_data="qris"),
+            InlineKeyboardButton("📇 QRIS", callback_data="qris"),
+            InlineKeyboardButton("💳 DANA", callback_data="dana"),
         ],
-        [
-            InlineKeyboardButton("❌ ᴛᴜᴛᴜᴘ", callback_data="close")
-        ]
-    ])
+    ]
 
-    # Tombol kembali
-    back_button = InlineKeyboardMarkup([
-        [InlineKeyboardButton("🔙 Kembali", callback_data="back")],
-    ])
-
-
-
-# Handler untuk memulai bot dan menampilkan foto + tombol utama
 @app.on_message(filters.command("pay"))
-def start(client, message):
-    client.send_photo(
-        chat_id=message.chat.id,
-        photo=PHOTO_URL,
-        caption="Selamat datang Memex Project! Pilih menu di bawah ini untuk mengetahui jasa bot dan sistem payment:",
-        reply_markup=Data.main_buttons
+async def menu(_, msg):
+    buttons = InlineKeyboardMarkup(Data.mbuttons)
+    
+    await msg.reply_photo(
+        photo="https://telegra.ph/file/5c656925faa3d0265f640.jpg",
+        caption="📌 *Pilih layanan yang tersedia:*",
+        reply_markup=buttons
     )
 
-
-# Handler untuk callback "jasa"
-@app.on_callback_query(filters.regex("^jasa$"))
-def jasa_callback(client, query: CallbackQuery):
-    query.message.edit_text(
-        text=Data.JASA,
-        reply_markup=Data.back_button,
+@app.on_callback_query(filters.regex("jasa"))
+async def jasa_callback(_, query):
+    buttons = InlineKeyboardMarkup(Data.close)
+    
+    await query.message.reply_text(
+        Data.JASA,
+        reply_markup=buttons,
         disable_web_page_preview=True
     )
 
+@app.on_callback_query(filters.regex("dana"))
+async def dana_callback(_, query):
+    buttons = InlineKeyboardMarkup(Data.close)
+    
+    await query.message.reply_text(
+        Data.DANA,
+        reply_markup=buttons
+    )
 
-# Handler untuk callback "dana"
-@app.on_callback_query(filters.regex("^dana$"))
-def dana_callback(client, query: CallbackQuery):
-    query.message.edit_text(
-        text=Data.DANA,
-        reply_markup=Data.back_button,
+@app.on_callback_query(filters.regex("qris"))
+async def qris_callback(_, query):
+    buttons = InlineKeyboardMarkup(Data.close)
+    
+    await query.message.reply_text(
+        Data.QRIS,
+        reply_markup=buttons,
         disable_web_page_preview=True
     )
 
-
-# Handler untuk callback "qris"
-@app.on_callback_query(filters.regex("^qris$"))
-def qris_callback(client, query: CallbackQuery):
-    query.message.edit_text(
-        text=Data.QRIS,
-        reply_markup=Data.back_button,
-        disable_web_page_preview=True
+@app.on_callback_query(filters.regex("pay"))
+async def kembali_callback(_, query):
+    buttons = InlineKeyboardMarkup(Data.mbuttons)
+    
+    await query.message.reply_photo(
+        photo="https://telegra.ph/file/5c656925faa3d0265f640.jpg",
+        caption="📌 *Pilih layanan yang tersedia:*",
+        reply_markup=buttons
     )
-
-
-# Handler untuk tombol kembali ke menu utama
-@app.on_callback_query(filters.regex("^back$"))
-def back_callback(client, query: CallbackQuery):
-    query.message.edit_media(
-        media=InputMediaPhoto(
-            media=PHOTO_URL,
-            caption="Selamat datang Memex Project! Pilih menu di bawah ini untuk mengetahui jasa bot dan sistem payment:"
-        ),
-        reply_markup=Data.main_buttons
-    )
-
-
-# Handler untuk callback "close" (menutup pesan)
-@app.on_callback_query(filters.regex("^close$"))
-def close_callback(client, query: CallbackQuery):
-    query.message.delete()
-
-
