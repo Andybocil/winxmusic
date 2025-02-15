@@ -1,6 +1,8 @@
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery, InputMediaPhoto
 from AmonMusic import app
+# URL atau Path gambar yang ingin ditampilkan
+PHOTO_URL = "https://telegra.ph/file/5c656925faa3d0265f640.jpg"  # Ganti dengan foto yang diinginkan
 
 # Data daftar jasa dan pembayaran
 class Data:
@@ -44,32 +46,34 @@ DANA : 081398871823
 Klik Disini </b><a href='https://telegra.ph/file/3a8701cb42f9af1483800.jpg'>QRIS BrotherCloth</a>
 """
 
-    close = InlineKeyboardMarkup([[InlineKeyboardButton("ᴛᴜᴛᴜᴘ", callback_data="close")]])
-
-    mbuttons = InlineKeyboardMarkup([
+    # Tombol utama
+    main_buttons = InlineKeyboardMarkup([
         [
             InlineKeyboardButton("🛒 JASA", callback_data="jasa"),
-            InlineKeyboardButton("💳 QRIS", callback_data="qris"),
-            InlineKeyboardButton("❌ ᴛᴜᴛᴜᴘ", callback_data="close")
-        ]
-    ])
-
-    buttons = InlineKeyboardMarkup([
-        [
             InlineKeyboardButton("💰 DANA", callback_data="dana"),
             InlineKeyboardButton("💳 QRIS", callback_data="qris"),
+        ],
+        [
             InlineKeyboardButton("❌ ᴛᴜᴛᴜᴘ", callback_data="close")
         ]
     ])
 
+    # Tombol kembali
+    back_button = InlineKeyboardMarkup([
+        [InlineKeyboardButton("🔙 Kembali", callback_data="back")],
+    ])
 
 
-# Handler untuk memulai bot dan menampilkan tombol utama
-@app.on_message(filters.command("mex"))
+
+
+# Handler untuk memulai bot dan menampilkan foto + tombol utama
+@app.on_message(filters.command("pay"))
 def start(client, message):
-    message.reply_text(
-        "Selamat datang! Pilih menu di bawah ini:",
-        reply_markup=Data.mbuttons
+    client.send_photo(
+        chat_id=message.chat.id,
+        photo=PHOTO_URL,
+        caption="Selamat datang Di MEMEX PROJECT! Pilih menu di bawah ini untuk mengetahui jasa dan sistem pembayaran:",
+        reply_markup=Data.main_buttons
     )
 
 
@@ -78,7 +82,7 @@ def start(client, message):
 def jasa_callback(client, query: CallbackQuery):
     query.message.edit_text(
         text=Data.JASA,
-        reply_markup=Data.close,
+        reply_markup=Data.back_button,
         disable_web_page_preview=True
     )
 
@@ -88,7 +92,7 @@ def jasa_callback(client, query: CallbackQuery):
 def dana_callback(client, query: CallbackQuery):
     query.message.edit_text(
         text=Data.DANA,
-        reply_markup=Data.close
+        reply_markup=Data.back_button
     )
 
 
@@ -97,8 +101,20 @@ def dana_callback(client, query: CallbackQuery):
 def qris_callback(client, query: CallbackQuery):
     query.message.edit_text(
         text=Data.QRIS,
-        reply_markup=Data.close,
+        reply_markup=Data.back_button,
         disable_web_page_preview=True
+    )
+
+
+# Handler untuk tombol kembali ke menu utama
+@app.on_callback_query(filters.regex("^back$"))
+def back_callback(client, query: CallbackQuery):
+    query.message.edit_media(
+        media=InputMediaPhoto(
+            media=PHOTO_URL,
+            caption="Selamat datang! Pilih menu di bawah ini:"
+        ),
+        reply_markup=Data.main_buttons
     )
 
 
