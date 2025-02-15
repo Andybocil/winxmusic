@@ -1,5 +1,5 @@
 from pyrogram import filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto
 from AmonMusic import app
 
 class Data:
@@ -32,40 +32,58 @@ class Data:
    - Tampilan statistik unduhan file.
    - Dukungan untuk berbagai jenis file.
 
-Untuk informasi lebih lanjut dan pemesanan, silakan hubungi @ownercpkoid.
+Untuk informasi lebih lanjut dan pemesanan, silakan hubungi @OwnNeko.
 """
 
-    DANA = "DANA : 081398871823"
+    DANA = "💳 *DANA:* 081398871823"
     
-    QRIS = """Klik Disini </b><a href='https://telegra.ph/file/3a8701cb42f9af1483800.jpg'>QRIS BrotherCloth</a>"""
+    QRIS = """📌 *Scan QRIS untuk pembayaran:*
+    
+Klik 👉 <a href='https://telegra.ph/file/3a8701cb42f9af1483800.jpg'>QRIS BrotherCloth</a>"""
 
-    close = [
-        [InlineKeyboardButton("🔙 Kembali", callback_data="pay")]
+    MENU_IMAGE = "https://telegra.ph/file/5c656925faa3d0265f640.jpg"
+
+    main_buttons = [
+        [
+            InlineKeyboardButton("JASA", callback_data="jasa"),
+            InlineKeyboardButton("QRIS", callback_data="qris"),
+            InlineKeyboardButton("DANA", callback_data="dana"),
+        ],
+        [InlineKeyboardButton("❌ Tutup", callback_data="close")]
     ]
 
-    mbuttons = [
-        [
-            InlineKeyboardButton("🛒 JASA", callback_data="jasa"),
-            InlineKeyboardButton("📇 QRIS", callback_data="qris"),
-            InlineKeyboardButton("💳 DANA", callback_data="dana"),
-        ],
+    submenu_buttons = [
+        [InlineKeyboardButton("🔙 Kembali", callback_data="pay")],
+        [InlineKeyboardButton("❌ Tutup", callback_data="close")]
     ]
 
 @app.on_message(filters.command("pay"))
 async def menu(_, msg):
-    buttons = InlineKeyboardMarkup(Data.mbuttons)
+    buttons = InlineKeyboardMarkup(Data.main_buttons)
     
     await msg.reply_photo(
-        photo="https://telegra.ph/file/5c656925faa3d0265f640.jpg",
+        photo=Data.MENU_IMAGE,
         caption="📌 *Pilih layanan yang tersedia:*",
+        reply_markup=buttons
+    )
+
+@app.on_callback_query(filters.regex("pay"))
+async def kembali_callback(_, query):
+    buttons = InlineKeyboardMarkup(Data.main_buttons)
+    
+    await query.message.edit_media(
+        InputMediaPhoto(
+            media=Data.MENU_IMAGE,
+            caption="📌 *Pilih layanan yang tersedia:*"
+        ),
         reply_markup=buttons
     )
 
 @app.on_callback_query(filters.regex("jasa"))
 async def jasa_callback(_, query):
-    buttons = InlineKeyboardMarkup(Data.close)
+    buttons = InlineKeyboardMarkup(Data.submenu_buttons)
     
-    await query.message.reply_text(
+    await query.message.edit_text(
         Data.JASA,
         reply_markup=buttons,
         disable_web_page_preview=True
@@ -73,29 +91,23 @@ async def jasa_callback(_, query):
 
 @app.on_callback_query(filters.regex("dana"))
 async def dana_callback(_, query):
-    buttons = InlineKeyboardMarkup(Data.close)
+    buttons = InlineKeyboardMarkup(Data.submenu_buttons)
     
-    await query.message.reply_text(
+    await query.message.edit_text(
         Data.DANA,
         reply_markup=buttons
     )
 
 @app.on_callback_query(filters.regex("qris"))
 async def qris_callback(_, query):
-    buttons = InlineKeyboardMarkup(Data.close)
+    buttons = InlineKeyboardMarkup(Data.submenu_buttons)
     
-    await query.message.reply_text(
+    await query.message.edit_text(
         Data.QRIS,
         reply_markup=buttons,
         disable_web_page_preview=True
     )
 
-@app.on_callback_query(filters.regex("pay"))
-async def kembali_callback(_, query):
-    buttons = InlineKeyboardMarkup(Data.mbuttons)
-    
-    await query.message.reply_photo(
-        photo="https://telegra.ph/file/5c656925faa3d0265f640.jpg",
-        caption="📌 *Pilih layanan yang tersedia:*",
-        reply_markup=buttons
-    )
+@app.on_callback_query(filters.regex("close"))
+async def close_callback(_, query):
+    await query.message.delete()
