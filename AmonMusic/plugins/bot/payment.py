@@ -5,7 +5,6 @@ from AmonMusic import app
 class Data:
     JASA = """
 <b>DAFTAR:</b>
-
 1. Pembuatan Bot Menfess
    Deskripsi: Bot untuk mengelola layanan postingan anonim (menfess) di grup.
    Fitur:
@@ -31,7 +30,6 @@ class Data:
    - Mengelola file yang diunggah (menghapus, dll.).
    - Tampilan statistik unduhan file.
    - Dukungan untuk berbagai jenis file.
-
 Untuk informasi lebih lanjut dan pemesanan, silakan hubungi @ownercpkoid.
 """
 
