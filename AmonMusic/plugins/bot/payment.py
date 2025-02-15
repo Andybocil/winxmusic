@@ -35,9 +35,11 @@ class Data:
 Untuk informasi lebih lanjut dan pemesanan, silakan hubungi @ownercpkoid.</blockquote>
 """
 
-    DANA = "<b>💳 ᴍᴏᴛᴏᴅᴇ ᴘᴇᴍʙᴀʏᴀʀᴀɴ:</b>
- <b>├ ᴅᴀɴᴀ</b>
- <b>└────• <code>0895340192141</code></b>"
+    DANA = """
+    <b>💳 ᴍᴏᴛᴏᴅᴇ ᴘᴇᴍʙᴀʏᴀʀᴀɴ:</b>
+    <b>├ ᴅᴀɴᴀ</b>
+    <b>└────• <code>0895340192141</code></b>
+    """
     
     QRIS = """📌 *Scan QRIS untuk pembayaran:*
     
