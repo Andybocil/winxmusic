@@ -4,7 +4,7 @@ from AmonMusic import app
 
 class Data:
     JASA = """
-<blockquote><b>DAFTAR:</b>
+<b>DAFTAR:</b>
 
 1. Pembuatan Bot Menfess
    Deskripsi: Bot untuk mengelola layanan postingan anonim (menfess) di grup.
@@ -32,7 +32,7 @@ class Data:
    - Tampilan statistik unduhan file.
    - Dukungan untuk berbagai jenis file.
 
-Untuk informasi lebih lanjut dan pemesanan, silakan hubungi @ownercpkoid.</blockquote>
+Untuk informasi lebih lanjut dan pemesanan, silakan hubungi @ownercpkoid.
 """
 
     DANA = """
