@@ -4,7 +4,7 @@ from AmonMusic import app
 
 class Data:
     JASA = """
-<b>DAFTAR:</b>
+<blockquote><b>DAFTAR:</b>
 
 1. Pembuatan Bot Menfess
    Deskripsi: Bot untuk mengelola layanan postingan anonim (menfess) di grup.
@@ -32,22 +32,24 @@ class Data:
    - Tampilan statistik unduhan file.
    - Dukungan untuk berbagai jenis file.
 
-Untuk informasi lebih lanjut dan pemesanan, silakan hubungi @OwnNeko.
+Untuk informasi lebih lanjut dan pemesanan, silakan hubungi @ownercpkoid.</blockquote>
 """
 
-    DANA = "💳 *DANA:* 081398871823"
+    DANA = "<b>💳 ᴍᴏᴛᴏᴅᴇ ᴘᴇᴍʙᴀʏᴀʀᴀɴ:</b>
+ <b>├ ᴅᴀɴᴀ</b>
+ <b>└────• <code>0895340192141</code></b>"
     
     QRIS = """📌 *Scan QRIS untuk pembayaran:*
     
-Klik 👉 <a href='https://telegra.ph/file/3a8701cb42f9af1483800.jpg'>QRIS BrotherCloth</a>"""
+Klik 👉 <a href='https://files.catbox.moe/oi9hrz.jpg'>QRIS MemexProject</a>"""
 
     MENU_IMAGE = "https://telegra.ph/file/5c656925faa3d0265f640.jpg"
 
     main_buttons = [
         [
-            InlineKeyboardButton("JASA", callback_data="jasa"),
-            InlineKeyboardButton("QRIS", callback_data="qris"),
-            InlineKeyboardButton("DANA", callback_data="dana"),
+            InlineKeyboardButton("🛒 JASA", callback_data="jasa"),
+            InlineKeyboardButton("📇 QRIS", callback_data="qris"),
+            InlineKeyboardButton("💳 DANA", callback_data="dana"),
         ],
         [InlineKeyboardButton("❌ Tutup", callback_data="close")]
     ]
