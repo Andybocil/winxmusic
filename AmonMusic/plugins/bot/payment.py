@@ -1,6 +1,6 @@
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from AmomMusic import app
+from AmonMusic import app
 
 class Data:
     JASA = """
