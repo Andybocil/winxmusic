@@ -1,6 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery, InputMediaPhoto
 from AmonMusic import app
+
 # URL atau Path gambar yang ingin ditampilkan
 PHOTO_URL = "https://telegra.ph/file/5c656925faa3d0265f640.jpg"  # Ganti dengan foto yang diinginkan
 
@@ -35,16 +36,12 @@ class Data:
    - Tampilan statistik unduhan file.
    - Dukungan untuk berbagai jenis file.
 
-Untuk informasi lebih lanjut dan pemesanan, silakan hubungi @OwnNeko.
+Untuk informasi lebih lanjut dan pemesanan, silakan hubungi @ownercpkoid.
 """
 
-    DANA = """
-DANA : 081398871823
-"""
+    DANA = "<b>DANA:</b> 081398871823"
 
-    QRIS = """
-Klik Disini </b><a href='https://telegra.ph/file/3a8701cb42f9af1483800.jpg'>QRIS BrotherCloth</a>
-"""
+    QRIS = "<b>QRIS:</b> Klik <a href='https://telegra.ph/file/3a8701cb42f9af1483800.jpg'>Disini</a> untuk melihat QRIS BrotherCloth."
 
     # Tombol utama
     main_buttons = InlineKeyboardMarkup([
@@ -65,14 +62,13 @@ Klik Disini </b><a href='https://telegra.ph/file/3a8701cb42f9af1483800.jpg'>QRIS
 
 
 
-
 # Handler untuk memulai bot dan menampilkan foto + tombol utama
 @app.on_message(filters.command("pay"))
 def start(client, message):
     client.send_photo(
         chat_id=message.chat.id,
         photo=PHOTO_URL,
-        caption="Selamat datang Di MEMEX PROJECT! Pilih menu di bawah ini untuk mengetahui jasa dan sistem pembayaran:",
+        caption="Selamat datang Memex Project! Pilih menu di bawah ini untuk mengetahui jasa bot dan sistem payment:",
         reply_markup=Data.main_buttons
     )
 
@@ -92,7 +88,8 @@ def jasa_callback(client, query: CallbackQuery):
 def dana_callback(client, query: CallbackQuery):
     query.message.edit_text(
         text=Data.DANA,
-        reply_markup=Data.back_button
+        reply_markup=Data.back_button,
+        disable_web_page_preview=True
     )
 
 
@@ -112,7 +109,7 @@ def back_callback(client, query: CallbackQuery):
     query.message.edit_media(
         media=InputMediaPhoto(
             media=PHOTO_URL,
-            caption="Selamat datang! Pilih menu di bawah ini:"
+            caption="Selamat datang Memex Project! Pilih menu di bawah ini untuk mengetahui jasa bot dan sistem payment:"
         ),
         reply_markup=Data.main_buttons
     )
