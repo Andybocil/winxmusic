@@ -40,7 +40,7 @@ Untuk informasi lebih lanjut dan pemesanan, silakan hubungi @ownercpkoid.
     QRIS = """Klik Disini </b><a href='https://telegra.ph/file/3a8701cb42f9af1483800.jpg'>QRIS BrotherCloth</a>"""
 
     close = [
-        [InlineKeyboardButton("🔙 Kembali", callback_data="menu")]
+        [InlineKeyboardButton("🔙 Kembali", callback_data="pay")]
     ]
 
     mbuttons = [
