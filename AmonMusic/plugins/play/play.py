@@ -365,7 +365,7 @@ async def play_commnd(
             return await mystic.delete()
         else:
             try:
-                await Auput.stream_call(url)
+                await Amon.stream_call(url)
             except NoActiveGroupCall:
                 await mystic.edit_text(
                     "There's an issue with the bot. Please report it to my owner and ask them to check logger group."
@@ -629,7 +629,7 @@ async def anonymous_check(client, CallbackQuery):
 
 
 @app.on_callback_query(
-    filters.regex("AuputPlaylists") & ~BANNED_USERS
+    filters.regex("AlexaPlaylists") & ~BANNED_USERS
 )
 @languageCB
 async def play_playlists_command(client, CallbackQuery, _):
