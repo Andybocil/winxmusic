@@ -51,7 +51,7 @@ Klik 👉 <a href='https://files.catbox.moe/oi9hrz.jpg'>QRIS MemexProject</a>"""
             InlineKeyboardButton("📇 QRIS", callback_data="qris"),
             InlineKeyboardButton("💳 DANA", callback_data="dana"),
         ],
-        [InlineKeyboardButton("🏘 Menu", callback_data="settingsback_helper")]
+        [InlineKeyboardButton("🏘 Menu", callback_data=f"settingsback_helper")],
         [InlineKeyboardButton("❌ Tutup", callback_data="close")]
     ]
 
