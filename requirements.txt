@@ -71,6 +71,6 @@ unidecode
 uvloop
 wget
 werkzeug==2.0.2
-yt-dlp>=2025.1.15
+yt-dlp
 youtube-search
 https://github.com/KSKOP69/youtube-search-python/archive/ksk.zip
