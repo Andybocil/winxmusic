@@ -1,3 +1,15 @@
+# Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
+# Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
+
+"""
+TheTeamAlexa is a project of Telegram bots with variety of purposes.
+Copyright (c) 2021 ~ Present Team Alexa <https://github.com/TheTeamAlexa>
+
+This program is free software: you can redistribute it and can modify
+as you want or you can collabe if you have new ideas.
+"""
+
+
 import sys
 
 from pyrogram import Client
@@ -13,8 +25,8 @@ class AmonBot(Client):
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             bot_token=config.BOT_TOKEN,
-            sleep_threshold=180,
-            max_concurrent_transmissions=6,
+            sleep_threshold=30,
+            max_concurrent_transmissions=8,
             workers=50,
         )
         LOGGER(__name__).info(f"Starting Bot...")
