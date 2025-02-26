@@ -10,7 +10,7 @@ import requests
 import yt_dlp
 import wget
 
-from youtubesearchpython import SearchVideos
+from py_yt import VideosSearch
 from youtube_search import YoutubeSearch
 from yt_dlp import YoutubeDL
 from pyrogram import Client, filters
