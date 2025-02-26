@@ -110,7 +110,7 @@ async def ytmusic(client, message: Message):
         )
         return
 
-    search = SearchVideos(f"{urlissed}", offset=1, mode="dict", max_results=1)
+    search = VideosSearch(f"{urlissed}", offset=1, mode="dict", max_results=1)
     mi = search.result()
     mio = mi["search_result"]
     mo = mio[0]["link"]
