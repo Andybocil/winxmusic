@@ -1,7 +1,7 @@
 import asyncio
 import logging
-from AnonXMusic import app
-from AnonXMusic.utils.database import (
+from AmonMusic import app
+from AmonMusic.utils.database import (
     mute_user_in_group,
     unmute_user_in_group,
     get_muted_users_in_group,
