@@ -10,48 +10,48 @@ load_dotenv()
 API_ID = int(getenv("API_ID", "28856628"))
 API_HASH = getenv("API_HASH", "55a4ebead2c0f59f98731b437bed0a08")
 
-BOT_TOKEN = getenv("BOT_TOKEN", "7894019144:AAGbA1GBmQoLHmCC5P6XOsJ3ZRikhThUSZM")
+BOT_TOKEN = getenv("BOT_TOKEN", "7242291019:AAEv1cjkp9R-SlDdYajbqMQo87WC-lVcxGY")
 
-MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://diasmusic:fajar27@cluster0.zdbq3.mongodb.net/?retryWrites=true&w=majority")
+MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://musicwin:musicwin@cluster0.o6iwp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 
 DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", "5000"))
 
 SONG_DOWNLOAD_DURATION = int(getenv("SONG_DOWNLOAD_DURATION_LIMIT", "3600"))
 
-LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", "-1002155331283"))
+LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", "-1002347241555"))
 
-MUST_JOIN = getenv("MUST_JOIN", "memekpro")
+MUST_JOIN = getenv("MUST_JOIN", "gbtnwinn")
 
-MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME", "˹ᴀᴍᴏɴ 〆 ᴍᴜsɪᴄ˼")
+MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME", "WIN MUSIC")
 
-ASSUSERNAME = getenv("ASSUSERNAME", "assistenfrr")
+ASSUSERNAME = getenv("ASSUSERNAME", "asistancelpm")
 
-OWNER_ID = int(getenv("OWNER_ID", "7369463399"))
+OWNER_ID = int(getenv("OWNER_ID", "6518396441"))
 
-OWNER_USERNAME = getenv("OWNER_USERNAME", "ownercpkoid")
+OWNER_USERNAME = getenv("OWNER_USERNAME", "winnnbaiksst")
 
-BOT_USERNAME = getenv("BOT_USERNAME" , "amonrobot_bot")
+BOT_USERNAME = getenv("BOT_USERNAME" , "winmusicTapibot")
 
 EVALOP = list(map(int, getenv("EVALOP", "7369463399").split()))
 
 HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 
-BOT_ID = getenv("BOT_ID", "7894019144")
+BOT_ID = getenv("BOT_ID", "7242291019")
 
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 
-UPSTREAM_REPO = getenv("UPSTREAM_REPO", "https://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@github.com/memex2711/amonxmusic && cd amonxmusic")
+UPSTREAM_REPO = getenv("UPSTREAM_REPO", "https://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@github.com/Andybocil/winxmusic && cd winxmusic")
 
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "master")
 
-GIT_TOKEN = getenv("GIT_TOKEN", "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")
+GIT_TOKEN = getenv("GIT_TOKEN", "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")
 
 GPT_API = getenv("GPT_API")
 DEEP_API = getenv("DEEP_API")
 
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/memekpro")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/gbtnwinn")
 
-SUPPORT_GROUP = getenv("SUPPORT_GROUP", "https://t.me/memexprojectback")
+SUPPORT_GROUP = getenv("SUPPORT_GROUP", "https://t.me/kucingssupportt")
 
 AUTO_LEAVING_ASSISTANT = getenv("AUTO_LEAVING_ASSISTANT", "False")
 
