@@ -1,5 +1,6 @@
-from typing import Dict, List, Union
+import random
 
+from typing import Dict, List, Union
 from AmonMusic.core.mongo import mongodb
 
 queriesdb = mongodb.queries
@@ -14,11 +15,50 @@ usersdb = mongodb.tgusersdb
 playlistdb = mongodb.playlist
 blockeddb = mongodb.blockedusers
 privatedb = mongodb.privatechats
+mutedb = mongodb.muteusers
+
+
+
+
+#mutedb
+async def mute_user_in_group(group_id, user_id, muted_by_id, muted_by_name):
+    try:
+        await mutedb.update_one(
+            {'group_id': group_id},
+            {'$addToSet': {'muted_users': {'user_id': user_id, 'muted_by': {'id': muted_by_id, 'name': muted_by_name}}}},
+            upsert=True
+        )
+    except Exception as e:
+        print(f"Terjadi kesalahan saat menambahkan pengguna ke dalam list mute: {e}")
+
+async def unmute_user_in_group(group_id, user_id):
+    try:
+        await mutedb.update_one(
+            {'group_id': group_id},
+            {'$pull': {'muted_users': {'user_id': user_id}}}
+        )
+    except Exception as e:
+        print(f"Terjadi kesalahan saat menghapus pengguna dari list mute: {e}")
+
+async def get_muted_users_in_group(group_id):
+    try:
+        doc = await mutedb.find_one({'group_id': group_id})
+        if doc:
+            return doc.get('muted_users', [])
+        return []
+    except Exception as e:
+        print(f"Terjadi kesalahan saat mengambil daftar pengguna yang di mute: {e}")
+        return []
+
+async def clear_muted_users_in_group(group_id):
+    try:
+        await mutedb.delete_one({'group_id': group_id})
+    except Exception as e:
+        print(f"Terjadi kesalahan saat membersihkan daftar pengguna yang di mute: {e}")
+
 
 
 # Playlist
-
-
 async def _get_playlists(chat_id: int) -> Dict[str, int]:
     _notes = await playlistdb.find_one({"chat_id": chat_id})
     if not _notes:
