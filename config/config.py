@@ -10,7 +10,7 @@ load_dotenv()
 API_ID = int(getenv("API_ID", "28856628"))
 API_HASH = getenv("API_HASH", "55a4ebead2c0f59f98731b437bed0a08")
 
-BOT_TOKEN = getenv("BOT_TOKEN", "7242291019:AAEv1cjkp9R-SlDdYajbqMQo87WC-lVcxGY")
+BOT_TOKEN = getenv("BOT_TOKEN", "7242291019:AAFAzpFast1Y8RBHNj9yn3J4-H12JpoPquY")
 
 MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://musicwin:musicwin@cluster0.o6iwp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 
