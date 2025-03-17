@@ -3,7 +3,7 @@ import importlib
 from typing import Any
 
 from pyrogram import idle
-from pytgcalls.exceptions import NoActiveGroupCall, GroupCallNotFound
+from pytgcalls.exceptions import NoActiveGroupCall
 
 import config
 from config import BANNED_USERS
@@ -35,7 +35,7 @@ async def init() -> None:
     await Amon.start()
     try:
         await Amon.stream_call("https://telegra.ph/file/b60b80ccb06f7a48f68b5.mp4")
-    except (NoActiveGroupCall, GroupCallNotFound):
+    except NoActiveGroupCall:
         LOGGER("AmonMusic").error(
             "[ERROR] - \n\nTurn on group voice chat and don't put it off otherwise I'll stop working thanks."
         )
@@ -43,11 +43,11 @@ async def init() -> None:
     except:
         pass
     await Amon.decorators()
-    LOGGER("AmonMusic").info("Amo Music Bot Started Successfully")
+    LOGGER("AmonMusic").info("Amon Music Bot Started Successfully")
     await idle()
     await app.stop()
     await userbot.stop()
-    LOGGER("AmonMusic").info("Stopping Amon Music bot...")
+    LOGGER("AmonMusic").info("Stopping Amon Music Bot...")
 
 
 if __name__ == "__main__":
