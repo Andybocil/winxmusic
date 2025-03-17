@@ -2,22 +2,14 @@ import asyncio
 from typing import Union
 
 from pyrogram import Client
-from pyrogram.enums import ChatMemberStatus
 from pyrogram.errors import FloodWait, ChatAdminRequired
 from pyrogram.types import InlineKeyboardMarkup
-from pyrogram.errors import (ChatAdminRequired,
-                             UserAlreadyParticipant,
-                             UserNotParticipant)
 
 from pytgcalls import PyTgCalls
 from pytgcalls import filters as fl
 from ntgcalls import TelegramServerError
-from pytgcalls.exceptions import (
-    AlreadyJoinedError,
-    NoActiveGroupCall,
-)
-from pytgcalls.types import ChatUpdate, MediaStream, Update
-from pytgcalls.types import StreamAudioEnded
+from pytgcalls.exceptions import NoActiveGroupCall
+from pytgcalls.types import ChatUpdate, MediaStream, StreamEnded, GroupCallConfig
 
 import config
 from AmonMusic import LOGGER, YouTube, app
@@ -89,7 +81,7 @@ class Call(PyTgCalls):
             cache_duration=100,
         )
         self.userbot4 = Client(
-            name="Amon4",
+            name="Amon",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING4),
@@ -111,11 +103,11 @@ class Call(PyTgCalls):
 
     async def pause_stream(self, chat_id: int):
         assistant = await group_assistant(self, chat_id)
-        await assistant.pause_stream(chat_id)
+        await assistant.pause(chat_id)
 
     async def resume_stream(self, chat_id: int):
         assistant = await group_assistant(self, chat_id)
-        await assistant.resume_stream(chat_id)
+        await assistant.resume(chat_id)
 
     async def mute_stream(self, chat_id: int):
         assistant = await group_assistant(self, chat_id)
@@ -157,6 +149,7 @@ class Call(PyTgCalls):
         assistant = await group_assistant(self, chat_id)
         audio_stream_quality = await get_audio_bitrate(chat_id)
         video_stream_quality = await get_video_bitrate(chat_id)
+        ksk = GroupCallConfig(auto_start=False)
         if video:
             stream = MediaStream(
                 link,
@@ -180,6 +173,7 @@ class Call(PyTgCalls):
         await assistant.play(
             chat_id,
             stream,
+            config=ksk,
         )
 
     async def seek_stream(self, chat_id, file_path, to_seek, duration, mode):
@@ -212,7 +206,6 @@ class Call(PyTgCalls):
         await asyncio.sleep(10)
         await assistant.leave_call(config.LOG_GROUP_ID)
 
-  
     async def join_call(
         self,
         chat_id: int,
@@ -222,6 +215,7 @@ class Call(PyTgCalls):
         image: Union[bool, str] = None,
     ):
         assistant = await group_assistant(self, chat_id)
+        ksk = GroupCallConfig(auto_start=False)
         audio_stream_quality = await get_audio_bitrate(chat_id)
         video_stream_quality = await get_video_bitrate(chat_id)
         if video:
@@ -256,6 +250,7 @@ class Call(PyTgCalls):
             await assistant.play(
                 chat_id,
                 stream,
+                config=ksk,
             )
         except NoActiveGroupCall:
             try:
@@ -274,10 +269,6 @@ class Call(PyTgCalls):
         except ChatAdminRequired:
             raise AssistantErr(
                 "**ɴᴏ ᴀᴄᴛɪᴠᴇ ᴠɪᴅᴇᴏ ᴄʜᴀᴛ ғᴏᴜɴᴅ**\n\nᴩʟᴇᴀsᴇ ᴍᴀᴋᴇ sᴜʀᴇ ʏᴏᴜ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛ."
-            )
-        except AlreadyJoinedError:
-            raise AssistantErr(
-                "**ᴀssɪsᴛᴀɴᴛ ᴀʟʀᴇᴀᴅʏ ɪɴ ᴠɪᴅᴇᴏᴄʜᴀᴛ**\n\nᴍᴜsɪᴄ ʙᴏᴛ sʏsᴛᴇᴍs ᴅᴇᴛᴇᴄᴛᴇᴅ ᴛʜᴀᴛ ᴀssɪᴛᴀɴᴛ ɪs ᴀʟʀᴇᴀᴅʏ ɪɴ ᴛʜᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛ, ɪғ ᴛʜɪs ᴩʀᴏʙʟᴇᴍ ᴄᴏɴᴛɪɴᴜᴇs ʀᴇsᴛᴀʀᴛ ᴛʜᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ."
             )
         except TelegramServerError:
             raise AssistantErr(
@@ -584,17 +575,17 @@ class Call(PyTgCalls):
         @self.three.on_update(fl.chat_update(ChatUpdate.Status.LEFT_CALL))
         @self.four.on_update(fl.chat_update(ChatUpdate.Status.LEFT_CALL))
         @self.five.on_update(fl.chat_update(ChatUpdate.Status.LEFT_CALL))
-        async def stream_services_handler(client, update):
+        async def stream_services_handler(client, update: ChatUpdate):
             await _clear_(update.chat_id)
             await self.stop_stream(update.chat_id)
 
-        @self.one.on_update(fl.stream_end)
-        @self.two.on_update(fl.stream_end)
-        @self.three.on_update(fl.stream_end)
-        @self.four.on_update(fl.stream_end)
-        @self.five.on_update(fl.stream_end)
-        async def stream_end_handler1(client, update: Update):
-            if not isinstance(update, StreamAudioEnded):
+        @self.one.on_update(fl.stream_end())
+        @self.two.on_update(fl.stream_end())
+        @self.three.on_update(fl.stream_end())
+        @self.four.on_update(fl.stream_end())
+        @self.five.on_update(fl.stream_end())
+        async def stream_end_handler1(client, update: StreamEnded):
+            if not update.stream_type == StreamEnded.Type.AUDIO:
                 return
             await self.change_stream(client, update.chat_id)
 
