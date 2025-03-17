@@ -42,7 +42,7 @@ opencv-python
 ntgcalls
 pillow
 psutil
-py-tgcalls
+py-tgcalls==2.1.0
 pykeyboard
 git+https://github.com/memex2711/myprogram@main
 pickledb
