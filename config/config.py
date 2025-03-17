@@ -22,13 +22,13 @@ LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", "-1002347241555"))
 
 MUST_JOIN = getenv("MUST_JOIN", "gbtnwinn")
 
-MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME", "WIN MUSIC")
+MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME", "WINNN MUSIC")
 
 ASSUSERNAME = getenv("ASSUSERNAME", "asistancelpm")
 
 OWNER_ID = int(getenv("OWNER_ID", "6518396441"))
 
-OWNER_USERNAME = getenv("OWNER_USERNAME", "winnnbaiksst")
+OWNER_USERNAME = getenv("OWNER_USERNAME", "onlyyluiz")
 
 BOT_USERNAME = getenv("BOT_USERNAME" , "winmusicTapibot")
 
