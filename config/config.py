@@ -125,8 +125,8 @@ clean = {}
 autoclean = []
 
 # Images
-START_IMG_URL = "https://telegra.ph//file/a1cd18a753909cd2bc358.jpg"
-PING_IMG_URL = "https://telegra.ph//file/a1cd18a753909cd2bc358.jpg"
+START_IMG_URL = "https://graph.org/file/0b577ab55d96893577c57-47bc7f5497fd762f01.jpg"
+PING_IMG_URL = "https://graph.org/file/0b577ab55d96893577c57-47bc7f5497fd762f01.jpg"
 PLAYLIST_IMG_URL = "https://te.legra.ph/file/4ec5ae4381dffb039b4ef.jpg"
 GLOBAL_IMG_URL = "https://te.legra.ph/file/4ec5ae4381dffb039b4ef.jpg"
 STATS_IMG_URL = "https://te.legra.ph/file/e906c2def5afe8a9b9120.jpg"
