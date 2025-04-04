@@ -20,7 +20,7 @@ SONG_DOWNLOAD_DURATION = int(getenv("SONG_DOWNLOAD_DURATION_LIMIT", "3600"))
 
 LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", "-1002597309579"))
 
-MUST_JOIN = getenv("MUST_JOIN", "gbtnwinn")
+MUST_JOIN = getenv("MUST_JOIN", "kucingsupport")
 
 MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME", "LUIZ MUSIC")
 
