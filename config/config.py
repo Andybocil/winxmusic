@@ -10,7 +10,7 @@ load_dotenv()
 API_ID = int(getenv("API_ID", "28856628"))
 API_HASH = getenv("API_HASH", "55a4ebead2c0f59f98731b437bed0a08")
 
-BOT_TOKEN = getenv("BOT_TOKEN", "7242291019:AAFAzpFast1Y8RBHNj9yn3J4-H12JpoPquY")
+BOT_TOKEN = getenv("BOT_TOKEN", "7738515573:AAG1eNjGmiACCfcE0MICLmXDyUOoZyvSFzU")
 
 MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://musicwin:musicwin@cluster0.o6iwp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 
@@ -18,25 +18,25 @@ DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", "5000"))
 
 SONG_DOWNLOAD_DURATION = int(getenv("SONG_DOWNLOAD_DURATION_LIMIT", "3600"))
 
-LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", "-1002347241555"))
+LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", "-1002597309579"))
 
 MUST_JOIN = getenv("MUST_JOIN", "gbtnwinn")
 
-MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME", "WINNN MUSIC")
+MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME", "LUIZ MUSIC")
 
 ASSUSERNAME = getenv("ASSUSERNAME", "asistancelpm")
 
-OWNER_ID = int(getenv("OWNER_ID", "6518396441"))
+OWNER_ID = int(getenv("OWNER_ID", "5482298702"))
 
 OWNER_USERNAME = getenv("OWNER_USERNAME", "onlyyluiz")
 
-BOT_USERNAME = getenv("BOT_USERNAME" , "winmusicTapibot")
+BOT_USERNAME = getenv("BOT_USERNAME" , "musicluiz_tapibot")
 
-EVALOP = list(map(int, getenv("EVALOP", "7369463399").split()))
+EVALOP = list(map(int, getenv("EVALOP", "5482298702").split()))
 
 HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 
-BOT_ID = getenv("BOT_ID", "7242291019")
+BOT_ID = getenv("BOT_ID", "7738515573")
 
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 
