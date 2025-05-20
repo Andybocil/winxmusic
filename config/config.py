@@ -10,7 +10,7 @@ load_dotenv()
 API_ID = int(getenv("API_ID", "28856628"))
 API_HASH = getenv("API_HASH", "55a4ebead2c0f59f98731b437bed0a08")
 
-BOT_TOKEN = getenv("BOT_TOKEN", "7738515573:AAG1eNjGmiACCfcE0MICLmXDyUOoZyvSFzU")
+BOT_TOKEN = getenv("BOT_TOKEN", "7791093481:AAG-Ixdp1gqmUy_0Oc39F6LfF2PpJ50pHoI")
 
 MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://musicwin:musicwin@cluster0.o6iwp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 
@@ -18,25 +18,25 @@ DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", "5000"))
 
 SONG_DOWNLOAD_DURATION = int(getenv("SONG_DOWNLOAD_DURATION_LIMIT", "3600"))
 
-LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", "-1002597309579"))
+LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", "-1002589125361"))
 
-MUST_JOIN = getenv("MUST_JOIN", "kucingsupport")
+MUST_JOIN = getenv("MUST_JOIN", "keanssupport")
 
-MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME", "LUIZ MUSIC")
+MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME", "KEAN ANKES")
 
 ASSUSERNAME = getenv("ASSUSERNAME", "asistancelpm")
 
-OWNER_ID = int(getenv("OWNER_ID", "5482298702"))
+OWNER_ID = int(getenv("OWNER_ID", "483800394"))
 
-OWNER_USERNAME = getenv("OWNER_USERNAME", "onlyyluiz")
+OWNER_USERNAME = getenv("OWNER_USERNAME", "onlykeannn")
 
-BOT_USERNAME = getenv("BOT_USERNAME" , "musicluiz_tapibot")
+BOT_USERNAME = getenv("BOT_USERNAME" , "ankestapibot")
 
-EVALOP = list(map(int, getenv("EVALOP", "5482298702").split()))
+EVALOP = list(map(int, getenv("EVALOP", "483800394").split()))
 
 HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 
-BOT_ID = getenv("BOT_ID", "7738515573")
+BOT_ID = getenv("BOT_ID", "7791093481")
 
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 
@@ -49,9 +49,9 @@ GIT_TOKEN = getenv("GIT_TOKEN", "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")
 GPT_API = getenv("GPT_API")
 DEEP_API = getenv("DEEP_API")
 
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/gbtnwinn")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/keanssupport")
 
-SUPPORT_GROUP = getenv("SUPPORT_GROUP", "https://t.me/kucingssupportt")
+SUPPORT_GROUP = getenv("SUPPORT_GROUP", "https://t.me/keanssupport")
 
 AUTO_LEAVING_ASSISTANT = getenv("AUTO_LEAVING_ASSISTANT", "False")
 
@@ -88,7 +88,7 @@ TG_AUDIO_FILESIZE_LIMIT = int(getenv("TG_AUDIO_FILESIZE_LIMIT", "104857600"))
 TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", "1073741824"))
 # https://www.gbmb.org/mb-to-bytes
 
-COOKIES = getenv("COOKIES", "https://batbin.me/aguishly")
+COOKIES = getenv("COOKIES", "https://batbin.me/inadjustable")
 # https://batbin.me
 
 STRING1 = getenv("STRING_SESSION", "BQExpLcATR4Rmqe0KDmApdEJLhjh-ekmgv3CbUOev-j6oV6U-9GNmgB8QN2tYMKs6K_DcmnY4gGI-RHZ1Qa6Ji9zTYNkMwW3arWe-vNPqGGJMbmEtdJ1f_ath-mBCJCKiB-jClmYLGMWk8Zt96RkuNhmDvoCmXq3zT5KDYCei0kZz_9K3GDSSpoFFMVCuP40AA-lZS6rH14DWfZGnSv4ekQiBQA8HoqVMJE4kv4GoF1MFdlM09d7fQA_A6HvINmDZJeJugKnrIfGGVDxjb1_YQ6TgFhPievMEd0AgHrHW05RgkU8urFF7WJz9fDwn-uTWeLf9Hzc7hxqEryjC9Jh_k6rTaBz7gAAAAFCRH-KAA")
