@@ -22,13 +22,13 @@ LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", "-1002589125361"))
 
 MUST_JOIN = getenv("MUST_JOIN", "keanssupport")
 
-MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME", "KEAN ANKES")
+MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME", "SEPONGEBOB")
 
 ASSUSERNAME = getenv("ASSUSERNAME", "asistancelpm")
 
 OWNER_ID = int(getenv("OWNER_ID", "483800394"))
 
-OWNER_USERNAME = getenv("OWNER_USERNAME", "onlykeannn")
+OWNER_USERNAME = getenv("OWNER_USERNAME", "onlyykeannn")
 
 BOT_USERNAME = getenv("BOT_USERNAME" , "ankestapibot")
 
@@ -49,9 +49,9 @@ GIT_TOKEN = getenv("GIT_TOKEN", "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")
 GPT_API = getenv("GPT_API")
 DEEP_API = getenv("DEEP_API")
 
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/keanssupport")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/gabutbangetsyu")
 
-SUPPORT_GROUP = getenv("SUPPORT_GROUP", "https://t.me/keanssupport")
+SUPPORT_GROUP = getenv("SUPPORT_GROUP", "https://t.me/gabutbangetsyu")
 
 AUTO_LEAVING_ASSISTANT = getenv("AUTO_LEAVING_ASSISTANT", "False")
 
