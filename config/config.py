@@ -125,7 +125,7 @@ clean = {}
 autoclean = []
 
 # Images
-START_IMG_URL = "https://graph.org/file/0b577ab55d96893577c57-47bc7f5497fd762f01.jpg"
+START_IMG_URL = "https://files.catbox.moe/76cwbj.jpg"
 PING_IMG_URL = "https://graph.org/file/0b577ab55d96893577c57-47bc7f5497fd762f01.jpg"
 PLAYLIST_IMG_URL = "https://te.legra.ph/file/4ec5ae4381dffb039b4ef.jpg"
 GLOBAL_IMG_URL = "https://te.legra.ph/file/4ec5ae4381dffb039b4ef.jpg"
