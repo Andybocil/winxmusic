@@ -2,7 +2,7 @@ from AmonMusic import app
 from config import OWNER_ID
 from pyrogram import filters, enums
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from AmonMusic.utils.jarvis_ban import admin_filter
+from AmonMusic.utils.memex_ban import admin_filter
 
 BOT_ID = app.me.id
 
