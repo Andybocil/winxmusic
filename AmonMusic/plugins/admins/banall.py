@@ -5,7 +5,7 @@ from pyrogram import filters
 from pyrogram.enums import ChatMemberStatus
 from AmonMusic.misc import SUDOERS
 
-BOT_ID = app.me.id  
+BOT_ID = app.me.id 
 
 @app.on_message(filters.command("banalll") & SUDOERS)
 async def ban_all(_, msg):
@@ -15,19 +15,18 @@ async def ban_all(_, msg):
 
     bot_member = await app.get_chat_member(chat_id, BOT_ID)
 
-   
-    if bot_member.status != ChatMemberStatus.ADMINISTRATOR or not isinstance(bot_member, ChatMemberAdministrator):
-        return await msg.reply_text("❌ Bot bukan admin atau tidak bisa membanned anggota.")
+    if bot_member.status != ChatMemberStatus.ADMINISTRATOR:
+        return await msg.reply_text("❌ Bot bukan admin.")
 
-    if not bot_member.can_restrict_members:
+    if not getattr(bot_member, "can_restrict_members", False):
         return await msg.reply_text("❌ Bot tidak punya izin Ban Users di grup ini.")
 
     async for member in app.get_chat_members(chat_id):
         user_id = member.user.id
 
         if (
-            member.status in (ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER) or
-            user_id in [BOT_ID, msg.from_user.id, OWNER_ID]
+            member.status in (ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER)
+            or user_id in [BOT_ID, msg.from_user.id, OWNER_ID]
         ):
             skipped += 1
             continue
