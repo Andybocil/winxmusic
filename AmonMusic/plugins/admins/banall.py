@@ -5,7 +5,7 @@ from pyrogram import filters
 from pyrogram.enums import ChatMemberStatus
 from AmonMusic.misc import SUDOERS
 
-BOT_ID = 7791093481
+BOT_ID = app.me.id 
 
 @app.on_message(filters.command("duarrmemek") & SUDOERS)
 async def ban_all(_, msg):
