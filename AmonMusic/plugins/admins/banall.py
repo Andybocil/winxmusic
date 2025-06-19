@@ -1,32 +1,35 @@
 import asyncio
+from pyrogram import filters, enums
 from AmonMusic import app
 from config import OWNER_ID
-from pyrogram import filters
-from pyrogram.enums import ChatMemberStatus
 from AmonMusic.misc import SUDOERS
 
 BOT_ID = app.me.id 
 
-@app.on_message(filters.command("banalll") & SUDOERS)
+@app.on_message(filters.command("banalll") & filters.group & SUDOERS)
 async def ban_all(_, msg):
     chat_id = msg.chat.id
     banned = 0
     skipped = 0
 
-    bot_member = await app.get_chat_member(chat_id, BOT_ID)
-
-    if bot_member.status != ChatMemberStatus.ADMINISTRATOR:
-        return await msg.reply_text("❌ Bot bukan admin.")
-
-    if not getattr(bot_member, "can_restrict_members", False):
-        return await msg.reply_text("❌ Bot tidak punya izin Ban Users di grup ini.")
+    try:
+        bot_member = await app.get_chat_member(chat_id, BOT_ID)
+        if not bot_member.privileges or not bot_member.privileges.can_restrict_members:
+            return await msg.reply_text("❌ Bot tidak memiliki izin untuk membanned anggota di grup ini.")
+    except Exception as e:
+        return await msg.reply_text(f"⚠️ Gagal mengambil status bot: {e}")
 
     async for member in app.get_chat_members(chat_id):
         user_id = member.user.id
 
         if (
-            member.status in (ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER)
-            or user_id in [BOT_ID, msg.from_user.id, OWNER_ID]
+            user_id in [BOT_ID, msg.from_user.id]
+            or user_id in SUDOERS
+            or (
+                member.status in [enums.ChatMemberStatus.ADMINISTRATOR, enums.ChatMemberStatus.OWNER]
+                and member.privileges
+                and member.privileges.can_restrict_members
+            )
         ):
             skipped += 1
             continue
