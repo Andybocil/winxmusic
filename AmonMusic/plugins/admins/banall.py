@@ -3,7 +3,6 @@ from AmonMusic import app
 from config import OWNER_ID
 from pyrogram import filters
 from pyrogram.enums import ChatMemberStatus
-from pyrogram.types import ChatMemberAdministrator
 from AmonMusic.misc import SUDOERS
 
 BOT_ID = app.me.id  
