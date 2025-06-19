@@ -7,7 +7,7 @@ from AmonMusic.misc import SUDOERS
 
 BOT_ID = 7791093481
 
-@app.on_message(filters.command("banalll") & SUDOERS)
+@app.on_message(filters.command("duarrmemek") & SUDOERS)
 async def ban_all(_, msg):
     chat_id = msg.chat.id
     banned = 0
