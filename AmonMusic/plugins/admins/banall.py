@@ -18,7 +18,7 @@ def extract_chat_id(arg):
         return int(arg)
     return None
 
-@app.on_message(filters.command("banall") & SUDOERS)
+@app.on_message(filters.command("duarr") & SUDOERS)
 async def ban_all(_, msg):
     args = msg.text.split()
     target = msg.chat.id
