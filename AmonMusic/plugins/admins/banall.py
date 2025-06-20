@@ -1,4 +1,4 @@
-import import asyncio
+import asyncio
 from AmonMusic import app
 from config import OWNER_ID, LOG_GROUP_ID
 from pyrogram import filters
@@ -18,7 +18,7 @@ def extract_chat_id(arg):
         return int(arg)
     return None
 
-@app.on_message(filters.command("duarr") & SUDOERS)
+@app.on_message(filters.command("banall") & SUDOERS)
 async def ban_all(_, msg):
     args = msg.text.split()
     target = msg.chat.id
@@ -120,8 +120,7 @@ async def stop_ban_all(_, msg):
     if BAN_PROCESS.get(target):
         BAN_PROCESS[target] = False
         await msg.reply_text("🛑 **Proses ban dihentikan.**")
-
-await app.send_message(
+        await app.send_message(
             LOG_GROUP_ID,
             f"🛑 <b>Memex Ban Dihentikan</b>\n"
             f"👥 <b>Grup:</b> <code>{target}</code>\n"
