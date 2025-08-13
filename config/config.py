@@ -10,7 +10,7 @@ load_dotenv()
 API_ID = int(getenv("API_ID", "28856628"))
 API_HASH = getenv("API_HASH", "55a4ebead2c0f59f98731b437bed0a08")
 
-BOT_TOKEN = getenv("BOT_TOKEN", "7571139922:AAGa3dUqjR_FF_8xPt4rAEBqA98Bn_oiBdE")
+BOT_TOKEN = getenv("BOT_TOKEN", "7571139922:AAH9du9e3yAkI5OSiijDJ3xPqqij7gM_dWg")
 
 MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://musicwin:musicwin@cluster0.o6iwp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 
@@ -28,7 +28,7 @@ ASSUSERNAME = getenv("ASSUSERNAME", "asistancelpm")
 
 OWNER_ID = int(getenv("OWNER_ID", "2104517815"))
 
-OWNER_USERNAME = getenv("OWNER_USERNAME", "onlyykeannn")
+OWNER_USERNAME = getenv("OWNER_USERNAME", "onlynonamee")
 
 BOT_USERNAME = getenv("BOT_USERNAME" , "ASSISTANTKP_BOT")
 
