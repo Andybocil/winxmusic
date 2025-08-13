@@ -20,7 +20,7 @@ SONG_DOWNLOAD_DURATION = int(getenv("SONG_DOWNLOAD_DURATION_LIMIT", "3600"))
 
 LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", "-1002715641967"))
 
-MUST_JOIN = getenv("MUST_JOIN", "gabutbangetsyu")
+MUST_JOIN = getenv("MUST_JOIN", "logsmusicls")
 
 MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME", "SATPAM")
 
@@ -49,9 +49,9 @@ GIT_TOKEN = getenv("GIT_TOKEN", "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")
 GPT_API = getenv("GPT_API")
 DEEP_API = getenv("DEEP_API")
 
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/gabutbangetsyu")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/logsmusicls")
 
-SUPPORT_GROUP = getenv("SUPPORT_GROUP", "https://t.me/gabutbangetsyu")
+SUPPORT_GROUP = getenv("SUPPORT_GROUP", "https://t.me/logsmusicls")
 
 AUTO_LEAVING_ASSISTANT = getenv("AUTO_LEAVING_ASSISTANT", "False")
 
@@ -91,7 +91,7 @@ TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", "1073741824"))
 COOKIES = getenv("COOKIES", "https://batbin.me/tiptopness")
 # https://batbin.me
 
-STRING1 = getenv("STRING_SESSION", "BQExpLcATR4Rmqe0KDmApdEJLhjh-ekmgv3CbUOev-j6oV6U-9GNmgB8QN2tYMKs6K_DcmnY4gGI-RHZ1Qa6Ji9zTYNkMwW3arWe-vNPqGGJMbmEtdJ1f_ath-mBCJCKiB-jClmYLGMWk8Zt96RkuNhmDvoCmXq3zT5KDYCei0kZz_9K3GDSSpoFFMVCuP40AA-lZS6rH14DWfZGnSv4ekQiBQA8HoqVMJE4kv4GoF1MFdlM09d7fQA_A6HvINmDZJeJugKnrIfGGVDxjb1_YQ6TgFhPievMEd0AgHrHW05RgkU8urFF7WJz9fDwn-uTWeLf9Hzc7hxqEryjC9Jh_k6rTaBz7gAAAAFCRH-KAA")
+STRING1 = getenv("STRING_SESSION", "BQF2S_kAlnVu0xtk_yTaLe-i2ZqIH9QcjBw-tn7osQBGppu21DTHKCMM4sZ_EIR9qYE38Cr4MUU2iZNqMXyZWgzVfO0Cx4FK6GBru5HYW7ETJRHf-yYa7D1EC7lAt3jGSvHhhSoLnLP_tNWA-h-EAA5Z3H9ACym_9SuRgPVPWNFy8hfIUABxQH_heu5wzjdLPBC5UbX0ZX2xRCsbUVWe24wvOUy1-7s5UJsFw3HGbfSuQwWE4Siors4f3wsgxeyjprNEBdkRDIyGTsUyqvngrxDgQyyRP1xJbaXLarxSUckRjGhZ_lmqr3dY14LcT7RZcIqqfN21mjxee_WBjkwsc7SIwo-4qAAAAAFCRH-KAA")
 STRING2 = getenv("STRING_SESSION2", None)
 STRING3 = getenv("STRING_SESSION3", None)
 STRING4 = getenv("STRING_SESSION4", None)
